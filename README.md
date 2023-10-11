@@ -29,6 +29,15 @@ sudo apt install composer
 ```
 # Sources
 
+- https://unixforum.org/viewtopic.php?t=79513
+- https://wikitech.wikimedia.org/wiki/Reprepro
+- https://blog.packagecloud.io/how-to-create-debian-repository-with-reprepro/
+- https://scotbofh.wordpress.com/2011/04/26/creating-your-own-signed-apt-repository-and-debian-packages/
+- https://sites.google.com/view/chewkeanho/guides/linux-os/reprepro/setup?authuser=0
+- https://wiki.debian.org/DebianRepository/SetupWithReprepro#Configuring_reprepro
+- https://salsa.debian.org/brlink/reprepro/blob/debian/docs/manual.html
+- https://wikitech.wikimedia.org/wiki/Reprepro#External_links
+- https://habr.com/ru/articles/50540/
 - https://assafmo.github.io/2019/05/02/ppa-repo-hosted-on-github.html
 - https://makandracards.com/makandra/37763-gpg-extract-private-key-and-import-on-different-machine
 - http://blog.jonliv.es/blog/2011/04/26/creating-your-own-signed-apt-repository-and-debian-packages/
