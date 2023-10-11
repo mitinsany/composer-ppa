@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+cd /usr/local/bin
+wget -c "https://github.com/composer/composer/releases/download/2.6.5/composer.phar"

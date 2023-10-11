@@ -1,0 +1,57 @@
+name: Build & Publish
+on:
+  schedule:
+    - cron: "0 4/6 * * *"
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
+jobs:
+    build:
+        runs-on: ubuntu-22.04
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          ENCRYPTED_5D87B9A7_KEY: ${{ secrets.ENCRYPTED_5D87B9A7_KEY }}
+          ENCRYPTED_5D87B9A7_IV: ${{ secrets.ENCRYPTED_5D87B9A7_IV }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Install dependencies
+              run: sudo ./docker/install-dependencies.sh
+
+            - name: Do key handling
+              run: ./docker/decrypt.sh
+
+            - name: Update packages
+              run: ./update-packages.sh
+
+            - name: Create commit variable
+              run: |
+                echo 'GIT_COMMIT_MSG<<EOF' >> $GITHUB_ENV
+                echo -e 'Package updates!\n' >> $GITHUB_ENV
+                [ -f commit.txt ] && cat commit.txt >> $GITHUB_ENV
+                echo 'EOF' >> $GITHUB_ENV
+
+            - name: Update repo
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                commit_message: "${{ env.GIT_COMMIT_MSG }}"
+                branch: main
+                file_pattern: db deb packages

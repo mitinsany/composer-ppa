@@ -1,0 +1,23 @@
+Label: composer
+Codename: latest
+Architectures: amd64
+Components: main
+Description: Composer
+ Custom apt repository for Composer (https://getcomposer.org/)
+SignWith: 548EE88B5D87B9A7
+
+Label: composer
+Codename: stable
+Architectures: amd64
+Components: main
+Description: Composer
+ Custom apt repository for Composer (https://getcomposer.org/)
+SignWith: 548EE88B5D87B9A7
+
+Label: composer
+Codename: v1
+Architectures: amd64
+Components: main
+Description: Composer
+ Custom apt repository for Composer (https://getcomposer.org/)
+SignWith: 548EE88B5D87B9A7
