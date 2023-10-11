@@ -1,0 +1,5 @@
+Component: main
+Label: composer
+Architecture: amd64
+Description: Composer
+Custom apt repository for Composer (https://getcomposer.org/)

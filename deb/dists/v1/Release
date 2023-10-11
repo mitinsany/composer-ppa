@@ -1,0 +1,19 @@
+Label: composer
+Codename: v1
+Date: Wed, 11 Oct 2023 13:25:35 UTC
+Architectures: amd64
+Components: main
+Description: Composer
+Custom apt repository for Composer (https://getcomposer.org/)
+MD5Sum:
+ b32893df80d3798bc36a5f133884a668 530 main/binary-amd64/Packages
+ 43a5ae28470ec97e5d02075dde74fe6a 383 main/binary-amd64/Packages.gz
+ 12c0b7bb7f0458c2f33e69d159a746fb 136 main/binary-amd64/Release
+SHA1:
+ 9179fac3a4ad8639f521ec9b335097d8c31f0242 530 main/binary-amd64/Packages
+ 1b6948166c7789180d3795e504728970f9f5664d 383 main/binary-amd64/Packages.gz
+ f5f6b2596894e4df8c8eab47fc92ce9cabd05454 136 main/binary-amd64/Release
+SHA256:
+ ee6966f206c7d33184fbd12bc155006d139e916d6bdf99811247b57aa2a9c572 530 main/binary-amd64/Packages
+ 6f7b311f4e9100d43532c150c29f5d5e8e1a09c3121ef7d44a1c3885ca82f678 383 main/binary-amd64/Packages.gz
+ 0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
