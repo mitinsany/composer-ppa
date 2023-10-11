@@ -1,0 +1,6 @@
+{
+  "code": "composer-latest",
+  "version": "0",
+  "description": "Dependency Management for PHP",
+  "version_regexp": "2.*.*"
+}
