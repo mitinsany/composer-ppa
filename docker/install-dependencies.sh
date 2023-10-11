@@ -8,7 +8,7 @@ DEBIAN_FRONTEND=noninteractive apt-get -qq install --yes --no-install-recommends
   curl \
   binutils \
   git \
-  reprepo \
+  reprepro \
   gnupg2 \
   jq \
   ruby \
