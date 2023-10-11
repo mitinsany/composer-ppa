@@ -1,0 +1,1 @@
+deb [arch=amd64 signed-by=/usr/share/keyrings/composer-ppa.gpg] https://mitinsany.github.io/composer-ppa/deb v1 main

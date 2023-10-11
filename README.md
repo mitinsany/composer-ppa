@@ -5,27 +5,27 @@ A PPA repository for Composer (Dependency Management for PHP. See https://getcom
 ## For stable latest 2.\* versions
 
 ```bash
-sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/deb/composer-ppa.gpg
-sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-stable.list https://mitinsany.github.io/composer-ppa/deb/composer-ppa-stable.list
+sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/deb/sources.list.d/composer-ppa.gpg
+sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-latest.list https://mitinsany.github.io/composer-ppa/deb/sources.list.d/composer-ppa-latest.list
 sudo apt update
-sudo apt install composer-php
+sudo apt install composer
 ```
 ## For stable (LTS) 2.2.\* versions
 
 
 ```bash
-sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/deb/composer-ppa.gpg
-sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-lts.list https://mitinsany.github.io/composer-ppa/deb/composer-ppa-lts.list
+sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/deb/sources.list.d/composer-ppa.gpg
+sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-stable.list https://mitinsany.github.io/composer-ppa/deb/sources.list.d/composer-ppa-stable.list
 sudo apt update
-sudo apt install composer-php
+sudo apt install composer
 ```
 ## For old 1.\*.\* versions
 
 ```bash
-sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/deb/composer-ppa.gpg
-sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-v1.list https://mitinsany.github.io/composer-ppa/deb/composer-ppa-v1.list
+sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/deb/sources.list.d/composer-ppa.gpg
+sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-v1.list https://mitinsany.github.io/composer-ppa/deb/sources.list.d/composer-ppa-v1.list
 sudo apt update
-sudo apt install composer-php
+sudo apt install composer
 ```
 # Sources
 
