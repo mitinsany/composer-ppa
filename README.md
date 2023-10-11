@@ -32,6 +32,7 @@ sudo apt install composer
 - https://unixforum.org/viewtopic.php?t=79513
 - https://wikitech.wikimedia.org/wiki/Reprepro
 - https://blog.packagecloud.io/how-to-create-debian-repository-with-reprepro/
+- https://earthly.dev/blog/creating-and-hosting-your-own-deb-packages-and-apt-repo/
 - https://scotbofh.wordpress.com/2011/04/26/creating-your-own-signed-apt-repository-and-debian-packages/
 - https://sites.google.com/view/chewkeanho/guides/linux-os/reprepro/setup?authuser=0
 - https://wiki.debian.org/DebianRepository/SetupWithReprepro#Configuring_reprepro
