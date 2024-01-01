@@ -33,7 +33,7 @@ function process_git_releases_page() {
     [ -f "$COMMIT_FILE" ] && rm -f "$COMMIT_FILE"
 
     local RELEASES_JSON="releases.json"
-    curl -sfLo "${RELEASES_JSON}" "https://api.github.com/repos/composer/composer/releases?page=${PAGE}"
+    curl -sfLo "${RELEASES_JSON}" "https://api.github.com/repos/composer/composer/releases?page=${PAGE}" || return 1
     local RELEASES_COUNT="$(jq '. | length' ${RELEASES_JSON})"
 
     find packages/* -maxdepth 1 -mindepth 1 -type d -print0 | while read -d $'\0' PACKAGE_DIR
