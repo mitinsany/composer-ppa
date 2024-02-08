@@ -1,18 +1,18 @@
 Package: composer
-Version: 2.6.6
+Version: 2.7.0
 License: MIT
 Vendor: https://getcomposer.org/
 Architecture: amd64
 Maintainer: Aleksandr Mitin <mitinsoft@gmail.com>
-Installed-Size: 0
+Installed-Size: 2
 Pre-Depends: wget
 Homepage: https://getcomposer.org/
 Priority: optional
 Section: devel
-Filename: pool/main/c/composer/composer_2.6.6_amd64.deb
-Size: 1276
-SHA256: c0ce512cfae3d9029a9c6fa6917002aa985f41377abbbc440ea1cc51640fbb05
-SHA1: 6f91011fd14fb409351cf734a69814893c93d81d
-MD5sum: e194fbcf73128e0c0b386b13740ed418
+Filename: pool/main/c/composer/composer_2.7.0_amd64.deb
+Size: 2428
+SHA256: f3b70018455a36c951ae1a9858074e2cae7435770a7f9745d3ce21508df707d6
+SHA1: 1f56e9218f64cd66dd3c9c6310e9ba9e48827ded
+MD5sum: 16cd766de6ea4e2ab6cbd38fbf8944f2
 Description: Dependency Management for PHP
 
