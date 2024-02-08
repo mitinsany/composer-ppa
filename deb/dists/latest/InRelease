@@ -3,27 +3,27 @@ Hash: SHA256
 
 Label: composer
 Codename: latest
-Date: Fri, 08 Dec 2023 22:07:46 UTC
+Date: Thu, 08 Feb 2024 16:10:14 UTC
 Architectures: amd64
 Components: main
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:
- 0291cb77f444998e14c47d7a87ad2fdf 526 main/binary-amd64/Packages
- 462592080f326780ab26a78546725202 377 main/binary-amd64/Packages.gz
+ 4c693c3a856cc5c01de91cbf7ae9c193 526 main/binary-amd64/Packages
+ 873e8d48e1e598e533f565728489ff5b 376 main/binary-amd64/Packages.gz
  12c0b7bb7f0458c2f33e69d159a746fb 136 main/binary-amd64/Release
 SHA1:
- 70c3a69ab7374f142511218ffac3a6613f15d465 526 main/binary-amd64/Packages
- d2bb68d2928656c7b0b1a65cc589d04cc52d5b07 377 main/binary-amd64/Packages.gz
+ 81bb7f7daef32d430538496afc6cf4727516cc8d 526 main/binary-amd64/Packages
+ 7199319b4a7c844e4e3c7034bd7942ffc4081c73 376 main/binary-amd64/Packages.gz
  f5f6b2596894e4df8c8eab47fc92ce9cabd05454 136 main/binary-amd64/Release
 SHA256:
- 7d510921a65128783482c2083d5d4d42d6d9285fb3ce18973a2bca19ac6f24b5 526 main/binary-amd64/Packages
- 3f28ef0e18861cf8680624c62975f8626659961ddef2ae6accdc8c65c35f789f 377 main/binary-amd64/Packages.gz
+ 204814157897d43ccd3109d2e0b1e477b5a9b66b6d405d88c6a57e0e2694463c 526 main/binary-amd64/Packages
+ b5cbb7a202711bb16c4f3a553c7ea3a9d5917b9761b5df8c3acbe963d9a15361 376 main/binary-amd64/Packages.gz
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iHUEAREIAB0WIQS3laActYkG2foQQnRUjuiLXYe5pwUCZXOTsgAKCRBUjuiLXYe5
-p/rWAP9WnUtztpfZbcLZRuu1xfZVitdXOC8SzvWqn3AfqzZaEwD9GILkWElX3LIH
-PUaZ52vHvc/8Wf8G26sqcj4yqNbLh6c=
-=q3GF
+iHUEAREIAB0WIQS3laActYkG2foQQnRUjuiLXYe5pwUCZcT85gAKCRBUjuiLXYe5
+p1m2AP91E82HSw6eFhQ+LquLRCSF9FKwWPibJN5ft94jHOS+qwEAqLrlThn0c/4z
+vIthY793h/NR/MJwTtzZbKPhhDRre3k=
+=Ra4s
 -----END PGP SIGNATURE-----

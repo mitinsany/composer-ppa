@@ -1,19 +1,19 @@
 Label: composer
 Codename: stable
-Date: Wed, 11 Oct 2023 13:25:30 UTC
+Date: Thu, 08 Feb 2024 16:10:17 UTC
 Architectures: amd64
 Components: main
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:
- b37561fe1ae4425ab7881c812eb685f4 528 main/binary-amd64/Packages
- 4a59b39f4cc8bdf4e12ff18280233fd2 381 main/binary-amd64/Packages.gz
+ fced1776f0e71a19e8b3a28c76491d61 528 main/binary-amd64/Packages
+ 80b4636493d0262ee9d545a57b656e49 381 main/binary-amd64/Packages.gz
  12c0b7bb7f0458c2f33e69d159a746fb 136 main/binary-amd64/Release
 SHA1:
- 0469393cdafd63170938f36b19a89d064e3bed4f 528 main/binary-amd64/Packages
- 45d825632ea4f507537b875f6c28c70fbf59571a 381 main/binary-amd64/Packages.gz
+ 5b3183b3cae7a116789bc0eef984225887d17f85 528 main/binary-amd64/Packages
+ 5aca1547ce01085744898f972d381b84e2e1f7d0 381 main/binary-amd64/Packages.gz
  f5f6b2596894e4df8c8eab47fc92ce9cabd05454 136 main/binary-amd64/Release
 SHA256:
- 23d77b8ee69027919dcb0efb67f986eba87c3400e78da3e1c4b31239e359ca15 528 main/binary-amd64/Packages
- f7de5ac6ef83f647118f4e9ee378d903577e171cfd8672cda4089276094c09c9 381 main/binary-amd64/Packages.gz
+ 7c8a682e460f7a5aafb70e4b81f27abc25343ed81909fff501c9df9ba87b3e1b 528 main/binary-amd64/Packages
+ cf4517241835bfcdd2675999f6bddb53dcff7ff589981f08ed4ce5a138fd137a 381 main/binary-amd64/Packages.gz
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
