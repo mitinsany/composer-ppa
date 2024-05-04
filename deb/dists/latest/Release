@@ -1,19 +1,19 @@
 Label: composer
 Codename: latest
-Date: Fri, 03 May 2024 16:09:40 UTC
+Date: Sat, 04 May 2024 22:07:44 UTC
 Architectures: amd64
 Components: main
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:
- fa40caef1c8f847c074067876d839674 526 main/binary-amd64/Packages
- 5527d0a815c1664bc672919f8b6699ed 379 main/binary-amd64/Packages.gz
+ 9c1d479b3e166e5ca1c62696c04cc996 526 main/binary-amd64/Packages
+ d4965877d700a554ae9bff78f1dc820b 383 main/binary-amd64/Packages.gz
  12c0b7bb7f0458c2f33e69d159a746fb 136 main/binary-amd64/Release
 SHA1:
- def9ab97b5f4f372daae24904ddda9463a019385 526 main/binary-amd64/Packages
- bead4887030107fc75531f825e5e3e140abfe0e6 379 main/binary-amd64/Packages.gz
+ 8fa8714acd2d06a77b8ab2a26198fecaf3e0167c 526 main/binary-amd64/Packages
+ 71e6c344abedc600b9aaeaa141f41b37b34c1f76 383 main/binary-amd64/Packages.gz
  f5f6b2596894e4df8c8eab47fc92ce9cabd05454 136 main/binary-amd64/Release
 SHA256:
- d83f61fafbc06f687047d0f5a17de5f01d9de2a4af4e666a531aba9bc34ede6d 526 main/binary-amd64/Packages
- 29e7e4a20fb611606e4407ca6a11ca0ab5f9d0b61663533ee508dc6d4c658dec 379 main/binary-amd64/Packages.gz
+ bab45f5f8f79497a113365e28e2fb7a888bff601a3eac8e41262d31fb9081490 526 main/binary-amd64/Packages
+ 527c70744d55d6a6929410433265ecefb6273ba75ba02b9b0276483c980f0be0 383 main/binary-amd64/Packages.gz
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
