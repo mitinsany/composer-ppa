@@ -23,13 +23,12 @@ function update_package_version {
 }
 
 function compare_version() {
-    [  "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ] && [ $1 != $2 ]
+    dpkg --compare-versions $1 lt $2
 }
-
 
 function process_git_releases_page() {
     local PAGE="$1"
-    local  COMMIT_FILE=commit.txt
+    local COMMIT_FILE=commit.txt
     [ -f "$COMMIT_FILE" ] && rm -f "$COMMIT_FILE"
 
     local RELEASES_JSON="releases.json"
@@ -58,6 +57,7 @@ function process_git_releases_page() {
             local REMOTE_VERSION="$(jq --raw-output --exit-status ".[${i}].name" "${RELEASES_JSON}")"
             local LOCAL_VERSION="$(jq --raw-output --exit-status ".version" "${PACKAGE_JSON}")"
             local DOWNLOAD_URL="$(jq --raw-output --exit-status ".[${i}].assets[0].browser_download_url" "${RELEASES_JSON}")"
+            local SIZE="$(jq --raw-output --exit-status ".[${i}].assets[0].size" "${RELEASES_JSON}")"
 
             if [ -z "${LOCAL_VERSION}" ] || [ -z "${REMOTE_VERSION}" ]; then
                 >&2 echo "[E] Both 'LOCAL_VERSION' and 'REMOTE_VERSION' must be set. Probably a curl / jq error."
@@ -83,7 +83,7 @@ function process_git_releases_page() {
             [ -f "${CHANGELOG_FILENAME}" ] && rm "${CHANGELOG_FILENAME}"
             echo "$(jq --raw-output --exit-status ".[${i}].body" "${RELEASES_JSON}")" > "/tmp/${CHANGELOG_FILENAME}"
 
-            ./build-single-deb.sh "${PACKAGE_DIR}" "${CHANGELOG_FILENAME}"
+            ./build-single-deb.sh "${PACKAGE_DIR}" "${CHANGELOG_FILENAME}" "${SIZE}"
             STABILITY="$(echo "${PACKAGE_DIR}" | cut -d/ -f2)"
             DEB_FILE="$(ls -c /tmp/*.deb | head -n 1)"
             reprepro --outdir ./deb -C main includedeb "${STABILITY}" $DEB_FILE
