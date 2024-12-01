@@ -1,29 +1,38 @@
 -----BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA256
+Hash: SHA512
 
 Label: composer
 Codename: v1
-Date: Wed, 11 Oct 2023 13:25:35 UTC
+Date: Sun, 01 Dec 2024 21:32:05 UTC
 Architectures: amd64
 Components: main
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:
- b32893df80d3798bc36a5f133884a668 530 main/binary-amd64/Packages
- 43a5ae28470ec97e5d02075dde74fe6a 383 main/binary-amd64/Packages.gz
+ a47b3fa465898f405980e3831aae3205 533 main/binary-amd64/Packages
+ 84f998fba405648711860c5c7a6d39ef 383 main/binary-amd64/Packages.gz
  12c0b7bb7f0458c2f33e69d159a746fb 136 main/binary-amd64/Release
 SHA1:
- 9179fac3a4ad8639f521ec9b335097d8c31f0242 530 main/binary-amd64/Packages
- 1b6948166c7789180d3795e504728970f9f5664d 383 main/binary-amd64/Packages.gz
+ 768e0f217dddae43df289e318eb696ecedffa8d5 533 main/binary-amd64/Packages
+ 7c93b6f7bfb340e1d95193c6c7f591d391f4450b 383 main/binary-amd64/Packages.gz
  f5f6b2596894e4df8c8eab47fc92ce9cabd05454 136 main/binary-amd64/Release
 SHA256:
- ee6966f206c7d33184fbd12bc155006d139e916d6bdf99811247b57aa2a9c572 530 main/binary-amd64/Packages
- 6f7b311f4e9100d43532c150c29f5d5e8e1a09c3121ef7d44a1c3885ca82f678 383 main/binary-amd64/Packages.gz
+ 0eacaaf19d891ab8f5d3a63aba4d27755a3e522a8c4cbf6cfbe726902bf25dfc 533 main/binary-amd64/Packages
+ 2669c3460b272d36a78812673a5ed8eb098043a45049d08db116ee2c8c7de4d5 383 main/binary-amd64/Packages.gz
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iHUEAREIAB0WIQS3laActYkG2foQQnRUjuiLXYe5pwUCZSaiTwAKCRBUjuiLXYe5
-p4OdAQCdYGDxboAYZ6mkGZ9c8wZZ3VxfHi/IQMD2EPNhU6m16QD/X4F3Kq/PHbTg
-7nny9HtJdjAX/8qkTw1S5RW2NRGFgKo=
-=3XwG
+iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmdM1dUACgkQYQvbW89u
+xweD+w//dAxjPwvOKH3dQW9hrk/4wH7vKsbh8W+/2gE+bjd6+naedBvKUrgw1v5P
+peLwBjuhAA27XAiLsi5LIh1bRhUxIoEOuDpOh6vWTsrKgK6A9GrjKY0S2FjtyWP5
+uH+2vLrrBPuhaYIXKSlhj4XA6XUfW69a83KtkcouyMIc4jXFOxSjCj+Bc1354JGr
+qEkATqQ6DlGN3qn5nCUotxoWhGWUPYZFgYwwm6yUHQqF8QpRSdNxB1Iv782i9KZx
+itYyuE7VqAlJ6OyhIYh+q/tCDNMMUwZEJhMekMNzFiQXfdywZOm2Dob9vrGh/lcE
+IxRwKnSzhctJmh+MXR316HfhJ3zEiwPSyR3Kq4PfLPNGieDUxIsIUXQM8HRGNMRY
+bZI64a0tvnrAwYdqeH5+u3FiD0x6U8FH3NvmaUgbLN3f0yk8qsbxYYsmsKiOfd3A
+kZ5jTuikg59fkn2cLfmiQyJu2wlHv7zw6Lkt9uCjI4taVnnnWeXUFPMxwXJRDbyO
+56gh3NWKH7HpeUt8xD6V02zA58pmTk2eUwj7sJZci5ulejdTbKt1eYBcJR6QpbHX
+iKBNrIZZZuXFv3fdqGcOxuZW9HjmZAgmsjCQkakc14gZC7gtfqVWID19G5Me2JvM
+HpKjHJ8X4uzwmWOCkSiRtTbSfiKIXa6F6WSUkwciuS626gvAVoo=
+=B8dT
 -----END PGP SIGNATURE-----

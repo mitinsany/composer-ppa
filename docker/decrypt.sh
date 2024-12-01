@@ -3,9 +3,9 @@
 set -euxo pipefail
 
 openssl aes-256-cbc \
-    -K "$ENCRYPTED_5D87B9A7_KEY" \
-    -iv "$ENCRYPTED_5D87B9A7_IV" \
-    -in composer-ppa.gpg.enc \
-    -out composer-ppa.gpg -d
+    -K "$ENCRYPTED_KEY" \
+    -iv "$ENCRYPTED_IV" \
+    -in 0xCF6EC707.asc.enc \
+    -out 0xCF6EC707.asc -d
 
-gpg --import composer-ppa.gpg
+gpg --import 0xCF6EC707.asc
