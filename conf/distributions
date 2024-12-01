@@ -4,7 +4,7 @@ Architectures: amd64
 Components: main
 Description: Composer
  Custom apt repository for Composer (https://getcomposer.org/)
-SignWith: 548EE88B5D87B9A7
+SignWith: 610BDB5BCF6EC707
 
 Label: composer
 Codename: stable
@@ -12,7 +12,7 @@ Architectures: amd64
 Components: main
 Description: Composer
  Custom apt repository for Composer (https://getcomposer.org/)
-SignWith: 548EE88B5D87B9A7
+SignWith: 610BDB5BCF6EC707
 
 Label: composer
 Codename: v1
@@ -20,4 +20,4 @@ Architectures: amd64
 Components: main
 Description: Composer
  Custom apt repository for Composer (https://getcomposer.org/)
-SignWith: 548EE88B5D87B9A7
+SignWith: 610BDB5BCF6EC707

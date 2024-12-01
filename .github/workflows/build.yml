@@ -24,7 +24,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           ENCRYPTED_5D87B9A7_KEY: ${{ secrets.ENCRYPTED_5D87B9A7_KEY }}

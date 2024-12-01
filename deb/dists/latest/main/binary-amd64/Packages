@@ -10,9 +10,9 @@ Homepage: https://getcomposer.org/
 Priority: optional
 Section: devel
 Filename: pool/main/c/composer/composer_2.8.3_amd64.deb
-Size: 1284
-SHA256: cc89679dde17e81006d8129e5f9c61c5ce25bf387a95ca1dd75afb432aa3898e
-SHA1: 6d7efb4a70db6280437942e966fcba96f3e42795
-MD5sum: 7a284b33f2e8bacf4948b66fd4fc2c83
+Size: 1296
+SHA256: 2f0f4909397694218b98f64cd04a6fa57652b4135cf5e0de10ea35cb1b104133
+SHA1: def5f1d42b827b610fabe2107d6232403c06b783
+MD5sum: c7bae302ba620ebaeb9d6beb143691e8
 Description: Dependency Management for PHP
 
