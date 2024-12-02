@@ -27,8 +27,8 @@ jobs:
         runs-on: ubuntu-24.04
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          ENCRYPTED_5D87B9A7_KEY: ${{ secrets.ENCRYPTED_5D87B9A7_KEY }}
-          ENCRYPTED_5D87B9A7_IV: ${{ secrets.ENCRYPTED_5D87B9A7_IV }}
+          ENCRYPTED_KEY: ${{ secrets.ENCRYPTED_KEY }}
+          ENCRYPTED_IV: ${{ secrets.ENCRYPTED_IV }}
         steps:
             - name: Checkout
               uses: actions/checkout@v3
