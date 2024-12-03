@@ -8,4 +8,4 @@ openssl aes-256-cbc \
     -in 0xCF6EC707.asc.enc \
     -out 0xCF6EC707.asc -d
 
-gpg --no-tty --import 0xCF6EC707.asc
+gpg --import 0xCF6EC707.asc
