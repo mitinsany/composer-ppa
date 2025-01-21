@@ -1,18 +1,18 @@
 Package: composer
-Version: 2.8.4
+Version: 2.8.5
 License: MIT
 Vendor: https://getcomposer.org/
 Architecture: amd64
 Maintainer: Aleksandr Mitin <mitinsoft@gmail.com>
-Installed-Size: 2991
+Installed-Size: 2988
 Pre-Depends: wget
 Homepage: https://getcomposer.org/
 Priority: optional
 Section: devel
-Filename: pool/main/c/composer/composer_2.8.4_amd64.deb
-Size: 1644
-SHA256: 6570b3c12d6de700cfb7703d32ba7c8144f94e375a310a18e29b67e9598bb389
-SHA1: 8a1fbe4609fc8899e22b82875a87e1b22b2f309e
-MD5sum: ce179c47008dfdcb823afdd7e5c2707f
+Filename: pool/main/c/composer/composer_2.8.5_amd64.deb
+Size: 1456
+SHA256: c0f3c30efe0110357bcba48d6b17b9298286e5318c9db2d0262f5ed1af86b7c5
+SHA1: 5d6627a15d8ae98b7cf4f039864f0551066a9426
+MD5sum: e506bdf286a3731d3b9bf25a1832858c
 Description: Dependency Management for PHP
 
