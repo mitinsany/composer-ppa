@@ -3,4 +3,4 @@
 set -e
 
 cd /usr/local/bin
-wget -c "https://github.com/composer/composer/releases/download/2.8.8/composer.phar"
+wget -c "https://github.com/composer/composer/releases/download/2.8.9/composer.phar"
