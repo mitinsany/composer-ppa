@@ -54,10 +54,16 @@ function process_git_releases_page() {
 
         for (( i=0; i < ${RELEASES_COUNT}; i++ ))
         do
+            local PRERELEASE="$(jq --raw-output --exit-status ".[${i}].prerelease" "${RELEASES_JSON}")"
             local REMOTE_VERSION="$(jq --raw-output --exit-status ".[${i}].name" "${RELEASES_JSON}")"
             local LOCAL_VERSION="$(jq --raw-output --exit-status ".version" "${PACKAGE_JSON}")"
             local DOWNLOAD_URL="$(jq --raw-output --exit-status ".[${i}].assets[0].browser_download_url" "${RELEASES_JSON}")"
             local SIZE="$(jq --raw-output --exit-status ".[${i}].assets[0].size" "${RELEASES_JSON}")"
+
+            if [[ ${PRERELEASE} == true ]]; then
+                >&2 printf "%3s Prerelease version: %10s. Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
+                continue
+            fi
 
             if [ -z "${LOCAL_VERSION}" ] || [ -z "${REMOTE_VERSION}" ]; then
                 >&2 echo "[E] Both 'LOCAL_VERSION' and 'REMOTE_VERSION' must be set. Probably a curl / jq error."
