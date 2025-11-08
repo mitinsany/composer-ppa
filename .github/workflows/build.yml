@@ -42,6 +42,11 @@ jobs:
             - name: Update packages
               run: ./update-packages.sh
 
+            - name: Configure Git
+              run: |
+                git config --global user.name 'github-actions[bot]'
+                git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
             - name: Create commit variable
               run: |
                 echo 'GIT_COMMIT_MSG<<EOF' >> $GITHUB_ENV
