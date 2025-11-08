@@ -1,13 +1,5 @@
 A PPA (unofficial) repository for Composer (Dependency Management for PHP. See https://getcomposer.org/). Contains only loader for binary file, without dependencies.
 
-# Important update
-Due to the fact that a short key was used to sign the packages. Users may receive the following message when updating the package list
-
-> W: https://mitinsany.github.io/composer-ppa/deb/dists/latest/InRelease: Signature by key B795A01CB58906D9FA104274548EE88B5D87B9A7 uses weak algorithm (dsa2048)
-
-So I regenerate new longer key. To continue using the repository, download and install a new key `composer-ppa.gpg`
-
-
 # Usage
 
 ## For stable latest 2.\* versions
