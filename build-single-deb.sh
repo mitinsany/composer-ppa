@@ -34,13 +34,14 @@ fpm -t deb \
     -s dir \
     -C "${PACKAGE_DIR}" \
     --name "${PACKAGE_NAME}" \
+    --package-name-suffix "$(date +%s)" \
     --architecture "${ARCH}" \
     --deb-installed-size "$(expr $SIZE / 1024)" \
     --license "MIT" \
     --maintainer "Aleksandr Mitin <mitinsoft@gmail.com>" \
     --vendor "https://getcomposer.org/" \
     --url "https://getcomposer.org/" \
-    --version "${VERSION}" \
+    --version "${VERSION}"-$(date +%s) \
     --deb-changelog "/tmp/${CHANGELOG_FILE}" \
     --deb-upstream-changelog "/tmp/${CHANGELOG_FILE}" \
     --deb-pre-depends "wget" \
