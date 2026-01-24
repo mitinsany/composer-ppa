@@ -26,7 +26,6 @@ jobs:
     build:
         runs-on: ubuntu-24.04
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ENCRYPTED_KEY: ${{ secrets.ENCRYPTED_KEY }}
           ENCRYPTED_IV: ${{ secrets.ENCRYPTED_IV }}
         steps:
