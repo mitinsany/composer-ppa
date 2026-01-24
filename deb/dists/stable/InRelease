@@ -3,36 +3,36 @@ Hash: SHA512
 
 Label: composer
 Codename: stable
-Date: Wed, 11 Dec 2024 16:11:10 UTC
+Date: Tue, 30 Dec 2025 16:13:48 UTC
 Architectures: amd64
 Components: main
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:
- ab67d12b327556006111c1317b9ec8a8 531 main/binary-amd64/Packages
- bb884b19d7451a27c064e891703ba88d 384 main/binary-amd64/Packages.gz
+ fb8255511c3bbb82d1ddc3f490608d3c 531 main/binary-amd64/Packages
+ d3436fe4c1757c558358e57ed9c162ed 382 main/binary-amd64/Packages.gz
  12c0b7bb7f0458c2f33e69d159a746fb 136 main/binary-amd64/Release
 SHA1:
- ed9c0f5221c70f4499bee0941bb07ed1f2a10d38 531 main/binary-amd64/Packages
- 3ea593c4c89a8332a8366f5636daa70e9f42b717 384 main/binary-amd64/Packages.gz
+ cb74379c2cf359e9aa1b57f1109eb5d7dd316501 531 main/binary-amd64/Packages
+ 5941800187a11a7991ea043c174968abd66f6f8a 382 main/binary-amd64/Packages.gz
  f5f6b2596894e4df8c8eab47fc92ce9cabd05454 136 main/binary-amd64/Release
 SHA256:
- 54213a1ea7f7f658444a04ff569b2158a3de43e27a5a6758e381c76f9de876b9 531 main/binary-amd64/Packages
- 1132264f6745988b26ec49bdd5c7e44ad1ab143ce7007a486bc8db52c42642ae 384 main/binary-amd64/Packages.gz
+ a4ffa00101cedc44bff61d263894532fc67bc70b357b22fa109c8c0c28d46d22 531 main/binary-amd64/Packages
+ a29dc16be37e76795593fed0e03d4857ddbbcf1e13b5477b179d5ec4afe2ea6b 382 main/binary-amd64/Packages.gz
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmdZuZ4ACgkQYQvbW89u
-xwfl0A//R14cT/Z1yGLNnbhT5mn2BbX2Bbop0kn2su4FlJ524UzJOhjlDIf6IVYw
-0WQlPig8jjH+PN3Gy99yJasE8Llbrzm9DVdaES62Le1g+fi51KF71MPR1iaja0qe
-MXYuC6W9e+Vg8qUhs8H5LdnVWPJRLIZ0EZbOtcSgGYz8KjlPa70+8YsOPcbLYGm5
-r1IExTsrQinGTeQTCFsOu8IPcmFs9PCgwOaBQ3AeUwzMQYomzSxcT6mHSELmjzFr
-wVnde8xlTKduNh0kcxidDFeCQDD46eCfoPhVBdy4CKdRcLFlRi8rktudBaKO/VVF
-EncFN8IrKVPVbnXfNGeBpctTXCl9peEN2NN0Z9Jf6h2DVuNQ1FnRzPAHoBjctWYw
-SdNbfvZgmJ9yzL+luwUuSo3YEtCRXORzUkVWyVNnH1VsAy5wQOJsZJH5vfZTWndi
-BGbAeGEACK1WbxFfQ1gX+9PNHJFxil0UN2ct9acF7Z213FF/vOf9kGKe09TCIOlM
-mDTY89ZxpYcQpNCUaDqAjnQmUa1aqFl4dEw0A8zI+axYRSc5QQS8GwtTXm54yV2L
-NbqqBR9gNceXRMCLN8DLVNl+nE5uR2kCUFZmQZR95LAJVMNd7vKe1eT5TjeId5uS
-pZ5waxwwzdn/TAeAGI0/7bk9qixqEP0DeAGHwJaOsVTXy63pQoA=
-=+zeB
+iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmlT+jwACgkQYQvbW89u
+xwelKBAAk+KYd3rSKp1ahEEEImrLUWiTC9kPgkVm08jgKn4rVjmSmPhintUpZI8J
+ypG8fm4VpaeLOumkQ/qNomlbZ8GkBffeEtPXBbEtMZi/PC0ychhnkYXb1f2z4oOh
+/VBA41CNN0lGqJ1aJj3jedd0X4ns+4F2VSZ9NPhBUpO9MJpQqC5MccCuxP3tSzr2
+R6KU0uUO8yF2Ofy7YNzHiKzCm+nidqFuL02epdLnusREsbIGUHjvnlLb0y8huUaI
+A/89jKlt4Nh668Q5fgE8nSH/QHfNUEWXcv0K0BncC/r3tCzPGALtF0jIeB6VM5FD
+TB7x0dkzLsajLOnZMoe/yR57TKqqHzUFg+/RPPioaR8628X89+Z93VNHWp1W15oo
+mARRXz7SXuD6NCub+VSFIC/V3TG3DD6y07w/n6tY32s/gi07UJr99dodTyOjaSNz
+RaYQdXC6dX8i5HudviYJBkcZ61RCKmXg/j9JbHl/4zwZGBgaih6XJwOs4xPDvDuP
+FDqLhZ+we62y1+UsIkZa04CbBiddvIM/P+Y+AU8Fg2RyRhyeg5zw/Ecir51C0f/x
+eiW83d22fFbOq8CWgv9t8ZHzCPRRpC55ji2emgkwIekZ588yBBL95nGSzjaQkibN
+ZxOeXDZZNqiboUhRwj9FpPNsKqEdM1Kxh7yKozWysBDc+tIzk7E=
+=QR07
 -----END PGP SIGNATURE-----
