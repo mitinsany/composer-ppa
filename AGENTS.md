@@ -1,0 +1,74 @@
+# AGENTS.md
+
+## Purpose
+
+This repository hosts an unofficial APT repository for Composer packages, built and published via `reprepro`.
+Main flows:
+- track Composer releases from GitHub;
+- rebuild `.deb` wrappers with `fpm`;
+- publish metadata and package indexes under `deb/` and `db/`.
+
+## Project Map
+
+- `update-packages.sh`: main automation entrypoint; fetches releases, updates package templates, builds and includes `.deb` into the repo.
+- `build-single-deb.sh`: builds one Debian package from a package template folder.
+- `packages/<channel>/composer/`: package templates (`package.json`, install/remove scripts).
+- `conf/`: `reprepro` configuration (`distributions`, `options`).
+- `deb/`: published APT repository contents (indexes, pool, signatures).
+- `db/`: `reprepro` database files.
+- `docker/`: helper scripts to prepare CI/runtime dependencies and import signing key.
+- `.github/workflows/build.yml`: scheduled/manual CI update + auto-commit pipeline.
+
+## Working Rules For Agents
+
+1. Keep changes minimal and task-focused.
+2. Never manually edit generated repository indexes in `deb/dists/**` or `db/**` unless the task explicitly requires low-level recovery.
+3. Prefer modifying source-of-truth files:
+   - `packages/**`
+   - `conf/**`
+   - automation scripts (`update-packages.sh`, `build-single-deb.sh`, `docker/**`)
+4. Preserve existing package channels and their intent:
+   - `latest`: `2.*.*`
+   - `stable`: `2.2.*`
+   - `v1`: `1.*.*`
+5. Do not remove or rotate signing configuration (`SignWith`, key files) unless explicitly requested.
+6. If task touches library/framework usage, use MCP `context7` for documentation lookup when needed.
+7. Local package build/update workflow should run inside Docker container built from `docker/Dockerfile`.
+
+## Standard Local Workflow
+
+1. Install required tools (or use `docker/install-dependencies.sh`):
+   - `jq`, `curl`, `reprepro`, `gpg`, `ruby` + `fpm`, `dpkg`.
+2. Ensure signing key is imported (CI uses `docker/decrypt.sh` with `ENCRYPTED_KEY` and `ENCRYPTED_IV`).
+3. Run update pipeline:
+   - `./update-packages.sh`
+4. Inspect resulting changes:
+   - `git status`
+   - verify updated versions in `packages/*/composer/package.json`
+   - verify `deb/` and `db/` updates were produced.
+
+## Recommended Docker Workflow (Local)
+
+Use this as the default local way to run package updates/build:
+
+```bash
+docker build -f docker/Dockerfile -t composer-ppa-builder .
+docker run --rm -it -v "$PWD:/app" composer-ppa-builder bash -lc "./update-packages.sh"
+```
+
+## Validation Checklist Before Commit
+
+- Scripts still pass shell syntax checks:
+  - `bash -n update-packages.sh build-single-deb.sh docker/*.sh`
+- No accidental edits outside task scope.
+- If versions changed:
+  - matching `preinstall` download URLs are updated;
+  - corresponding files in `deb/pool/main/c/composer/` exist;
+  - repo metadata files under `deb/dists/<channel>/` changed consistently.
+- Commit message should clearly state channel/version upgrades.
+
+## Notes On Safety
+
+- `update-packages.sh` rewrites package templates and repo state; run from repository root.
+- Packaging scripts operate on `/tmp` and may overwrite temp files with fixed names.
+- Package install scripts write to `/usr/local/bin` in target systems; be careful when changing install/remove logic.
