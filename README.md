@@ -68,6 +68,8 @@ Manual metadata recovery and signing (`Release`/`InRelease`):
 ./scripts/update-release-changelogs.sh
 ```
 
+GitHub API calls are made via GitHub CLI (`gh`). In CI, use `GH_TOKEN` (workflow sets it from `github.token`).
+
 Note: `reprepro` may print `Unknown header 'Changelogs'` while reading `conf/distributions`.
 This warning is expected in this setup and is handled by using `--ignore=unknownfield`
 plus explicit `Release`/`InRelease` changelog injection and signing.

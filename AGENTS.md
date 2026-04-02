@@ -19,6 +19,7 @@ Main flows:
 - `changelogs/`: published changelog files used by APT/Mint changelog fetch.
 - `docker/`: helper scripts to prepare CI/runtime dependencies and import signing key.
 - `scripts/backfill-changelogs.sh`: regenerates changelogs (`--current` for current channels, `--all` for all Composer releases).
+- `scripts/github-api.sh`: shared GitHub API helper (uses GitHub CLI `gh`).
 - `scripts/update-release-changelogs.sh`: injects `Changelogs` into `Release` and resigns `Release.gpg` / `InRelease`.
 - `scripts/validate-release-integrity.sh`: validates release metadata/changelog integrity before commit.
 - `.github/workflows/build.yml`: scheduled/manual CI update + auto-commit pipeline.
@@ -44,8 +45,9 @@ Main flows:
 ## Standard Local Workflow
 
 1. Install required tools (or use `docker/install-dependencies.sh`):
-   - `jq`, `curl`, `reprepro`, `gpg`, `ruby` + `fpm`, `dpkg`, `ripgrep` (optional; validation script has grep fallback).
+   - `jq`, `gh`, `curl`, `reprepro`, `gpg`, `ruby` + `fpm`, `dpkg`, `ripgrep` (optional; validation script has grep fallback).
 2. Ensure signing key is imported (CI uses `docker/decrypt.sh` with `ENCRYPTED_KEY` and `ENCRYPTED_IV`).
+   - for CI GitHub API access, set `GH_TOKEN` (workflow uses `${{ github.token }}`).
 3. Run update pipeline:
    - `./update-packages.sh`
    - this is the default daily mode and performs targeted changelog updates only for changed versions
