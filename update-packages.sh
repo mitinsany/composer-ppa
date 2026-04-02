@@ -3,7 +3,8 @@
 set -uo pipefail
 
 CHANGELOGS_DIR="changelogs/main/c/composer"
-RELEASES_API_BASE="https://api.github.com/repos/composer/composer/releases"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/scripts/github-api.sh"
 
 function update_package_version {
     local package
@@ -48,41 +49,15 @@ function write_public_changelog {
     printf "%s\n" "${release_body}" > "${changelog_path}"
 }
 
-function github_api_get {
-    local url="$1"
-    local body_file="$2"
-
-    local headers_file
-    local http_code
-    headers_file="$(mktemp)"
-
-    http_code="$(curl -sS -L -D "${headers_file}" -o "${body_file}" -w "%{http_code}" "${url}" || true)"
-
-    if [ "${http_code}" = "200" ]; then
-        rm -f "${headers_file}"
-        return 0
-    fi
-
-    if [ "${http_code}" = "403" ] && grep -qi '^x-ratelimit-remaining: 0' "${headers_file}"; then
-        >&2 echo "[E] GitHub API rate limit exceeded for ${url}"
-        >&2 grep -i '^x-ratelimit-reset:' "${headers_file}" || true
-    else
-        >&2 echo "[E] GitHub API request failed (${http_code}) for ${url}"
-    fi
-
-    rm -f "${headers_file}"
-    return 1
-}
-
 function process_git_releases_page {
     local page="$1"
 
     local releases_json
     releases_json="$(mktemp)"
-    github_api_get "${RELEASES_API_BASE}?per_page=100&page=${page}" "${releases_json}" || {
+    if ! github_releases_page_json "${page}" > "${releases_json}"; then
         rm -f "${releases_json}"
         return 1
-    }
+    fi
 
     local releases_count
     releases_count="$(jq '. | length' "${releases_json}")"
