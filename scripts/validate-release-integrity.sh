@@ -15,7 +15,7 @@ has_pattern() {
 }
 
 echo "[I] Running shell syntax validation..."
-bash -n update-packages.sh scripts/*.sh
+bash -n scripts/update-packages.sh scripts/*.sh
 
 for channel in "${CHANNELS[@]}"; do
     release_file="deb/dists/${channel}/Release"

@@ -47,7 +47,7 @@ apt changelog composer
 Daily auto-update (normal operation):
 
 ```bash
-./update-packages.sh
+./scripts/update-packages.sh
 ```
 
 Bootstrap / one-shot recovery for all upstream Composer releases:
