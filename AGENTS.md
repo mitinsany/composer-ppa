@@ -39,11 +39,12 @@ Main flows:
 6. If task touches library/framework usage, use MCP `context7` for documentation lookup when needed.
 7. Local package build/update workflow should run inside Docker container built from `docker/Dockerfile`.
 8. Changelog text is mandatory for package updates. Do not publish versions with empty release notes.
+9. Warning `Unknown header 'Changelogs'` from `reprepro` is expected; treat as non-fatal when using `--ignore=unknownfield` plus `scripts/update-release-changelogs.sh`.
 
 ## Standard Local Workflow
 
 1. Install required tools (or use `docker/install-dependencies.sh`):
-   - `jq`, `curl`, `reprepro`, `gpg`, `ruby` + `fpm`, `dpkg`.
+   - `jq`, `curl`, `reprepro`, `gpg`, `ruby` + `fpm`, `dpkg`, `ripgrep` (optional; validation script has grep fallback).
 2. Ensure signing key is imported (CI uses `docker/decrypt.sh` with `ENCRYPTED_KEY` and `ENCRYPTED_IV`).
 3. Run update pipeline:
    - `./update-packages.sh`

@@ -68,6 +68,10 @@ Manual metadata recovery and signing (`Release`/`InRelease`):
 ./scripts/update-release-changelogs.sh
 ```
 
+Note: `reprepro` may print `Unknown header 'Changelogs'` while reading `conf/distributions`.
+This warning is expected in this setup and is handled by using `--ignore=unknownfield`
+plus explicit `Release`/`InRelease` changelog injection and signing.
+
 # Sources
 
 - https://unixforum.org/viewtopic.php?t=79513
