@@ -38,7 +38,7 @@ Main flows:
    - `v1`: `1.*.*`
 5. Do not remove or rotate signing configuration (`SignWith`, key files) unless explicitly requested.
 6. If task touches library/framework usage, use MCP `context7` for documentation lookup when needed.
-7. Local package build/update workflow should run inside Docker container built from `docker/Dockerfile`.
+7. Local package build/update workflow should run inside Docker container built from repository-root `Dockerfile`.
 8. Changelog text is mandatory for package updates. Do not publish versions with empty release notes.
 9. Warning `Unknown header 'Changelogs'` from `reprepro` is expected; treat as non-fatal when using `--ignore=unknownfield` plus `scripts/update-release-changelogs.sh`.
 
@@ -66,7 +66,7 @@ Main flows:
 Use this as the default local way to run package updates/build:
 
 ```bash
-docker build -f docker/Dockerfile -t composer-ppa-builder .
+docker build -f Dockerfile -t composer-ppa-builder .
 docker run --rm -it -v "$PWD:/app" composer-ppa-builder bash -lc "./scripts/update-packages.sh"
 ```
 
