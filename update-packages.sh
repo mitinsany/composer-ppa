@@ -49,6 +49,31 @@ function write_public_changelog {
     printf "%s\n" "${release_body}" > "${changelog_path}"
 }
 
+function version_matches_channel_pattern {
+    local version="$1"
+    local pattern="$2"
+
+    local major minor patch
+    IFS='.' read -r major minor patch <<< "${version}"
+
+    if [[ "${pattern}" =~ ^([0-9]+)\.\*\.\*$ ]]; then
+        [ "${major}" = "${BASH_REMATCH[1]}" ]
+        return
+    fi
+
+    if [[ "${pattern}" =~ ^([0-9]+)\.([0-9]+)\.\*$ ]]; then
+        [ "${major}" = "${BASH_REMATCH[1]}" ] && [ "${minor}" = "${BASH_REMATCH[2]}" ]
+        return
+    fi
+
+    if [[ "${pattern}" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+        [ "${major}" = "${BASH_REMATCH[1]}" ] && [ "${minor}" = "${BASH_REMATCH[2]}" ] && [ "${patch}" = "${BASH_REMATCH[3]}" ]
+        return
+    fi
+
+    [[ "${version}" == ${pattern} ]]
+}
+
 function process_git_releases_page {
     local page="$1"
 
@@ -138,7 +163,7 @@ function process_git_releases_page {
                 continue
             fi
 
-            if [[ ${REMOTE_VERSION} != ${VERSION_REGEXP} ]]; then
+            if ! version_matches_channel_pattern "${REMOTE_VERSION}" "${VERSION_REGEXP}"; then
                 >&2 printf "[I] %3s: Regexp (%10s) == Remote (%10s) -> Skipped, because regexp.\n" "${CODE}" "${VERSION_REGEXP}" "${REMOTE_VERSION}"
                 continue
             fi
