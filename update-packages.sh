@@ -23,7 +23,12 @@ function update_package_version {
 }
 
 function compare_version() {
-    dpkg --compare-versions $1 lt $2
+    dpkg --compare-versions "$1" lt "$2"
+}
+
+function is_strict_stable_version() {
+    local version="$1"
+    [[ "${version}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
 }
 
 function process_git_releases_page() {
@@ -54,14 +59,18 @@ function process_git_releases_page() {
 
         for (( i=0; i < ${RELEASES_COUNT}; i++ ))
         do
+            local DRAFT="$(jq --raw-output --exit-status ".[${i}].draft" "${RELEASES_JSON}")"
             local PRERELEASE="$(jq --raw-output --exit-status ".[${i}].prerelease" "${RELEASES_JSON}")"
-            local REMOTE_VERSION="$(jq --raw-output --exit-status ".[${i}].name" "${RELEASES_JSON}")"
+            local TAG_VERSION="$(jq --raw-output --exit-status ".[${i}].tag_name // \"\"" "${RELEASES_JSON}")"
+            local RELEASE_NAME="$(jq --raw-output --exit-status ".[${i}].name // \"\"" "${RELEASES_JSON}")"
+            local REMOTE_VERSION="${TAG_VERSION}"
+            [ -z "${REMOTE_VERSION}" ] && REMOTE_VERSION="${RELEASE_NAME}"
             local LOCAL_VERSION="$(jq --raw-output --exit-status ".version" "${PACKAGE_JSON}")"
             local DOWNLOAD_URL="$(jq --raw-output --exit-status ".[${i}].assets[0].browser_download_url" "${RELEASES_JSON}")"
             local SIZE="$(jq --raw-output --exit-status ".[${i}].assets[0].size" "${RELEASES_JSON}")"
 
-            if [[ ${PRERELEASE} == true ]]; then
-                >&2 printf "%3s Prerelease version: %10s. Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
+            if [[ ${DRAFT} == true || ${PRERELEASE} == true ]]; then
+                >&2 printf "%3s Draft/Prerelease version: %10s. Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
                 continue
             fi
 
@@ -70,12 +79,17 @@ function process_git_releases_page() {
                 continue
             fi
 
-            if [[ ${REMOTE_VERSION} != ${VERSION_REGEXP} ]]; then
-                >&2 printf "%3s: Regexp (%10s) == Remote (%10s) -> Skipped, because regexp.\n" "${CODE}" "${REGEXP}" "${REMOTE_VERSION}"
+            if ! is_strict_stable_version "${REMOTE_VERSION}"; then
+                >&2 printf "%3s: Non-stable version (%10s) -> Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
                 continue
             fi
 
-            compare_version ${LOCAL_VERSION} ${REMOTE_VERSION}
+            if [[ ${REMOTE_VERSION} != ${VERSION_REGEXP} ]]; then
+                >&2 printf "%3s: Regexp (%10s) == Remote (%10s) -> Skipped, because regexp.\n" "${CODE}" "${VERSION_REGEXP}" "${REMOTE_VERSION}"
+                continue
+            fi
+
+            compare_version "${LOCAL_VERSION}" "${REMOTE_VERSION}"
             if [ "$?" -gt 0 ]; then
                 >&2 printf "%3s: Local (%10s) == Remote (%10s) -> Skipped, low version.\n" "${CODE}" "${LOCAL_VERSION}" "${REMOTE_VERSION}"
                 continue
