@@ -174,8 +174,11 @@ function process_git_releases_page {
 
 page=1
 while true; do
-    process_git_releases_page "${page}"
-    status=$?
+    if process_git_releases_page "${page}"; then
+        status=0
+    else
+        status=$?
+    fi
     if [ "${status}" -eq 2 ]; then
         break
     fi
