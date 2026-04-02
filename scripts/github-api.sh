@@ -28,7 +28,7 @@ github_releases_page_json() {
     ensure_gh_auth || return 1
 
     local output
-    if ! output="$(gh api "repos/${GITHUB_OWNER_REPO}/releases" -f per_page=100 -f page="${page}" 2>&1)"; then
+    if ! output="$(gh api "repos/${GITHUB_OWNER_REPO}/releases" --method GET -f per_page=100 -f page="${page}" 2>&1)"; then
         >&2 echo "[E] Failed to fetch GitHub releases page ${page}: ${output}"
         return 1
     fi
