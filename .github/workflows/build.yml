@@ -41,6 +41,9 @@ jobs:
             - name: Update packages
               run: ./update-packages.sh
 
+            - name: Validate repository metadata
+              run: ./scripts/validate-release-integrity.sh
+
             - name: Configure Git
               run: |
                 git config --global user.name 'github-actions[bot]'
@@ -58,4 +61,4 @@ jobs:
               with:
                 commit_message: "${{ env.GIT_COMMIT_MSG }}"
                 branch: main
-                file_pattern: db deb packages
+                file_pattern: db deb packages changelogs conf scripts

@@ -1,0 +1,19 @@
+### Not up to date with Composer 2 yet? Check the [alpha1 changelog](https://github.com/composer/composer/releases/2.0.0-alpha1) and [UPGRADE](UPGRADE-2.0.md) guide first.
+
+## Try it out now and get ready for the upcoming stable release
+
+- Use `composer self-update --preview` to try the latest alpha/prerelease version (2.x).
+- Use `composer self-update --snapshot` to try the latest dev build (2.x).
+- Use `composer self-update --stable` to go back to stable releases (1.x for now).
+- Use `composer self-update --1` in CI/scripts if you want to pin Composer to 1.x until you are ready to migrate, this will ensure you stay on 1.x releases even once a 2.0 stable comes out.
+
+## Changelog 
+
+  * Added parallel installation of packages (requires OSX/Linux/WSL, and that `unzip` is present in PATH)
+  * Added optimization of constraints by compiling them to PHP code, which should reduce CPU time of updates
+  * Added handling of Ctrl-C on Windows for PHP 7.4+
+  * Added better support for default branch names other than `master`
+  * Added --format=summary flag to `license` command
+  * Fixed issue in platform check when requiring ext-zend-opcache
+  * Fixed inline aliases issues
+  * Fixed git integration issue when signatures are set to be shown by default

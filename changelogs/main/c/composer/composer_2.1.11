@@ -1,0 +1,2 @@
+  * Fixed issues in proxied binary files when using declare() on php <8 (#10249)
+  * Fixed GitHub Actions output escaping issues (#10243)

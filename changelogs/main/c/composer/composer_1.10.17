@@ -1,0 +1,2 @@
+  * Fixed Bitbucket API authentication issue
+  * Fixed parsing of Composer 2 lock files breaking in some rare conditions

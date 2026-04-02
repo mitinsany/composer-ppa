@@ -1,0 +1,1 @@
+  * Added extra.plugin-optional support for allow auto-disabling unknown plugins which are not critical when running non-interactive (#11315)

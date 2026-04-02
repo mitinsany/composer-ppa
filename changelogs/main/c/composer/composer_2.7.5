@@ -1,0 +1,7 @@
+  * Added `uninstall` alias to `remove` command (#11951)
+  * Added workaround for broken curl versions 8.7.0/8.7.1 causing transport exceptions (#11913)
+  * Fixed root usage warnings showing up within Podman containers (#11946)
+  * Fixed config command not handling objects correctly in some conditions (#11945)
+  * Fixed binary proxies not containing the correct path if the project dir is a symlink (#11947)
+  * Fixed Composer autoloader being overruled by project autoloaders when they are loaded by event handlers (scripts/plugins) (#11955)
+  * Fixed TransportException (http failures) not having a distinct exit code, should now exit with `100` as code (#11954)

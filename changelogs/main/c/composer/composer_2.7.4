@@ -1,0 +1,3 @@
+  * Fixed regression (`Call to undefined method ProxyManager::needsTransitionWarning()`) with projects requiring composer/composer in an pre-2.7.3 version (#11943, #11940)
+
+As a side-note, requiring `composer/composer` is frowned upon and should really only be done in circumstances where it is absolutely necessary, and ideally you should talk to us first to see if we can't help avoid it or help by extracting some code in a [smaller library](https://packagist.org/packages/composer/).

@@ -1,0 +1,1 @@
+  * Reverted "Fixed runtime autoloader registration (for plugins and script handlers) to prefer the project dependencies over the bundled Composer ones" as it caused more problems than expected

@@ -3,6 +3,7 @@ Codename: stable
 Date: Tue, 30 Dec 2025 16:13:48 UTC
 Architectures: amd64
 Components: main
+Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:

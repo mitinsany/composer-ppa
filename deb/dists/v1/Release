@@ -3,6 +3,7 @@ Codename: v1
 Date: Sun, 01 Dec 2024 21:32:05 UTC
 Architectures: amd64
 Components: main
+Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:

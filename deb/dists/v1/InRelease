@@ -6,6 +6,7 @@ Codename: v1
 Date: Sun, 01 Dec 2024 21:32:05 UTC
 Architectures: amd64
 Components: main
+Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:
@@ -22,17 +23,17 @@ SHA256:
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmdM1dUACgkQYQvbW89u
-xweD+w//dAxjPwvOKH3dQW9hrk/4wH7vKsbh8W+/2gE+bjd6+naedBvKUrgw1v5P
-peLwBjuhAA27XAiLsi5LIh1bRhUxIoEOuDpOh6vWTsrKgK6A9GrjKY0S2FjtyWP5
-uH+2vLrrBPuhaYIXKSlhj4XA6XUfW69a83KtkcouyMIc4jXFOxSjCj+Bc1354JGr
-qEkATqQ6DlGN3qn5nCUotxoWhGWUPYZFgYwwm6yUHQqF8QpRSdNxB1Iv782i9KZx
-itYyuE7VqAlJ6OyhIYh+q/tCDNMMUwZEJhMekMNzFiQXfdywZOm2Dob9vrGh/lcE
-IxRwKnSzhctJmh+MXR316HfhJ3zEiwPSyR3Kq4PfLPNGieDUxIsIUXQM8HRGNMRY
-bZI64a0tvnrAwYdqeH5+u3FiD0x6U8FH3NvmaUgbLN3f0yk8qsbxYYsmsKiOfd3A
-kZ5jTuikg59fkn2cLfmiQyJu2wlHv7zw6Lkt9uCjI4taVnnnWeXUFPMxwXJRDbyO
-56gh3NWKH7HpeUt8xD6V02zA58pmTk2eUwj7sJZci5ulejdTbKt1eYBcJR6QpbHX
-iKBNrIZZZuXFv3fdqGcOxuZW9HjmZAgmsjCQkakc14gZC7gtfqVWID19G5Me2JvM
-HpKjHJ8X4uzwmWOCkSiRtTbSfiKIXa6F6WSUkwciuS626gvAVoo=
-=B8dT
+iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmnOfTYACgkQYQvbW89u
+xwer2Q//e8li8VSrCfyDSo4zw5R/jzTzaNFgs7q6+hJEpgFG3RVaJnKPl/vf+hlC
+K0xdSJK5KOd4olMcGRfy5NZ6zwSa8zxAYR7dJzsbBwhBo9BfQbVje1QT0Oa+r7v4
+9vzoVRUqguLrbROoPIk6dH5fTtZF1Ups7Dfb1WuaL5bdEjAJf/FmtS6Mm+K0z10w
+n9U7Le+dFzbPQKxyewVdHdSCQ3/gax3cDmGBo/hO5qBL3yp1WxJnBYVKffxGQdVw
+ogRs91AAxsLQMKhLpdMlcvdDRVXjjYoQF7LOG6bGpvVBKN/o5yB5peHPJpn8XJZ4
+aXWR45qBqytpORaOa3XgR42NfopDWaMrHtU/0IQAQ3h+4Hf32WgEI96xepw2ns+c
+Ty+KpzXeTL9r84VwdcBZyfAFyi3oips9y/HUjBUskWcqwQnLhoRG3PwEAuWK5Zz+
+KDBih/EPgSbOtEBiUhQjUBK7bl8Cdgqi4LKk+4GI7ewlreKsGpENjTh5RgGmVoou
+Jx5TVtZLiMIV+o6b15gcGuxZssSiCPANXtRRQ60PYlJ+2540dgUbdCGgOyvx3qa4
+Pt10a4yiUwurNArhWRNLYr5zDMYyqZ7sd3+cjM2XN210QHA8WU3Zh9QTG49zU0RF
+Ek/wE6m/T5TMKcXC9W5kYDpXMMISeW4Is+h/ddxQshoJfzUFPf4=
+=3N5l
 -----END PGP SIGNATURE-----

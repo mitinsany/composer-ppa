@@ -1,0 +1,6 @@
+  * Fixed deprecation notices appearing on this LTS version in case it is used on modern PHP. Modern PHP support is not guaranteed nor tested for though and the main purpose of LTS releases is legacy PHP versions support. (#12217)
+  * Fixed issue on plugin upgrade when it defines multiple classes (#12226)
+  * Fixed duplicate errors appearing in the output depending on php settings (#12214)
+  * Fixed InstalledVersions returning duplicate data in some instances (#12225)
+
+**Full Changelog**: https://github.com/composer/composer/compare/2.2.24...2.2.25

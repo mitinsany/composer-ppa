@@ -1,0 +1,2 @@
+  * Fixed regressions with old version validation
+  * Fixed invalid root aliases not being reported

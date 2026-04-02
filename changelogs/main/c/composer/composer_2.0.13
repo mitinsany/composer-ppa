@@ -1,0 +1,5 @@
+  * Security: Fixed command injection vulnerability in HgDriver/HgDownloader and hardened other VCS drivers and downloaders (GHSA-h5h8-pc6h-jvvx / CVE-2021-29472)
+  * Fixed install step at the end of the init command to take new dependencies into account correctly
+  * Fixed `update --lock` listing updates which were not really happening (#9812)
+  * Fixed support for --no-dev combined with --locked in outdated and show commands (#9788)
+

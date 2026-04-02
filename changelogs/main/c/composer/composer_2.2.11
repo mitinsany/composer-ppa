@@ -1,0 +1,5 @@
+  * Added missing config.bitbucket-oauth in composer-schema.json
+  * Added --2.2 flag to `self-update` to pin the Composer version to the 2.2 LTS range (#10682)
+  * Updated semver, jsonlint deps for minor fixes
+  * Fixed generation of autoload crashing if a package has a broken path (#10688)
+  * Removed dev-master=>dev-main alias from #10372 as it does not work when reloading from lock file and extracting dev deps (#10651)
