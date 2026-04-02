@@ -4,7 +4,7 @@ set -uo pipefail
 
 CHANGELOGS_DIR="changelogs/main/c/composer"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPT_DIR}/scripts/github-api.sh"
+source "${SCRIPT_DIR}/github-api.sh"
 
 function update_package_version {
     local package
@@ -183,7 +183,7 @@ function process_git_releases_page {
             [ -f "${CHANGELOG_FILENAME}" ] && rm "${CHANGELOG_FILENAME}"
             printf "%s\n" "${RELEASE_BODY}" > "/tmp/${CHANGELOG_FILENAME}"
 
-            ./build-single-deb.sh "${PACKAGE_DIR}" "${CHANGELOG_FILENAME}" "${SIZE}"
+            "${SCRIPT_DIR}/build-single-deb.sh" "${PACKAGE_DIR}" "${CHANGELOG_FILENAME}" "${SIZE}"
             STABILITY="$(echo "${PACKAGE_DIR}" | cut -d/ -f2)"
             DEB_FILE="$(ls -c /tmp/*.deb | head -n 1)"
             reprepro --outdir ./deb --ignore=unknownfield -C main includedeb "${STABILITY}" "${DEB_FILE}"
@@ -215,4 +215,4 @@ while true; do
 done
 
 reprepro --outdir ./deb --ignore=unknownfield export latest stable v1
-./scripts/update-release-changelogs.sh
+"${SCRIPT_DIR}/update-release-changelogs.sh"

@@ -10,14 +10,14 @@ Main flows:
 
 ## Project Map
 
-- `update-packages.sh`: main automation entrypoint; fetches releases, updates package templates, builds and includes `.deb` into the repo.
-- `build-single-deb.sh`: builds one Debian package from a package template folder.
+- `scripts/update-packages.sh`: main automation entrypoint; fetches releases, updates package templates, builds and includes `.deb` into the repo.
+- `scripts/build-single-deb.sh`: builds one Debian package from a package template folder.
 - `packages/<channel>/composer/`: package templates (`package.json`, install/remove scripts).
 - `conf/`: `reprepro` configuration (`distributions`, `options`).
 - `deb/`: published APT repository contents (indexes, pool, signatures).
 - `db/`: `reprepro` database files.
 - `changelogs/`: published changelog files used by APT/Mint changelog fetch.
-- `docker/`: helper scripts to prepare CI/runtime dependencies and import signing key.
+- `scripts/docker/`: helper scripts to prepare CI/runtime dependencies and import signing key.
 - `scripts/backfill-changelogs.sh`: regenerates changelogs (`--current` for current channels, `--all` for all Composer releases).
 - `scripts/github-api.sh`: shared GitHub API helper (uses GitHub CLI `gh`).
 - `scripts/update-release-changelogs.sh`: injects `Changelogs` into `Release` and resigns `Release.gpg` / `InRelease`.
@@ -31,7 +31,7 @@ Main flows:
 3. Prefer modifying source-of-truth files:
    - `packages/**`
    - `conf/**`
-   - automation scripts (`update-packages.sh`, `build-single-deb.sh`, `docker/**`)
+   - automation scripts (`scripts/update-packages.sh`, `scripts/build-single-deb.sh`, `scripts/**`)
 4. Preserve existing package channels and their intent:
    - `latest`: `2.*.*`
    - `stable`: `2.2.*`
@@ -44,12 +44,12 @@ Main flows:
 
 ## Standard Local Workflow
 
-1. Install required tools (or use `docker/install-dependencies.sh`):
+1. Install required tools (or use `scripts/docker/install-dependencies.sh`):
    - `jq`, `gh`, `curl`, `reprepro`, `gpg`, `ruby` + `fpm`, `dpkg`, `ripgrep` (optional; validation script has grep fallback).
-2. Ensure signing key is imported (CI uses `docker/decrypt.sh` with `ENCRYPTED_KEY` and `ENCRYPTED_IV`).
+2. Ensure signing key is imported (CI uses `scripts/docker/decrypt.sh` with `ENCRYPTED_KEY` and `ENCRYPTED_IV`).
    - for CI GitHub API access, set `GH_TOKEN` (workflow uses `${{ github.token }}`).
 3. Run update pipeline:
-   - `./update-packages.sh`
+   - `./scripts/update-packages.sh`
    - this is the default daily mode and performs targeted changelog updates only for changed versions
 4. Inspect resulting changes:
    - `git status`
@@ -67,13 +67,13 @@ Use this as the default local way to run package updates/build:
 
 ```bash
 docker build -f docker/Dockerfile -t composer-ppa-builder .
-docker run --rm -it -v "$PWD:/app" composer-ppa-builder bash -lc "./update-packages.sh"
+docker run --rm -it -v "$PWD:/app" composer-ppa-builder bash -lc "./scripts/update-packages.sh"
 ```
 
 ## Validation Checklist Before Commit
 
 - Scripts still pass shell syntax checks:
-  - `bash -n update-packages.sh build-single-deb.sh docker/*.sh`
+  - `bash -n scripts/update-packages.sh scripts/build-single-deb.sh scripts/docker/*.sh`
 - No accidental edits outside task scope.
 - If versions changed:
   - matching `preinstall` download URLs are updated;
@@ -84,6 +84,6 @@ docker run --rm -it -v "$PWD:/app" composer-ppa-builder bash -lc "./update-packa
 
 ## Notes On Safety
 
-- `update-packages.sh` rewrites package templates and repo state; run from repository root.
+- `scripts/update-packages.sh` rewrites package templates and repo state; run from repository root.
 - Packaging scripts operate on `/tmp` and may overwrite temp files with fixed names.
 - Package install scripts write to `/usr/local/bin` in target systems; be careful when changing install/remove logic.
