@@ -1,0 +1,4 @@
+* Security: Fixed ANSI sequence injection (GHSA-59pp-r3rg-353g / CVE-2025-67746)
+
+
+**Full Changelog**: https://github.com/composer/composer/compare/2.2.25...2.2.26

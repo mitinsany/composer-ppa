@@ -1,0 +1,5 @@
+- Fixed regression in handling of #reference which made it update every time
+- Fixed dev platform requirements being required even in --no-dev install from a lock file
+- Fixed parsing of extension versions that do not follow valid numbers, we now try to parse x.y.z and ignore the rest
+- Fixed exact constraints warnings appearing for 0.x versions
+- Fixed regression in the `remove` command

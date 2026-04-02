@@ -1,0 +1,5 @@
+- Fixed regression in 1.0.1 on systems with mbstring.func_overload enabled
+- Fixed regression in 1.0.1 that made dev packages update to the latest reference even if not whitelisted in a partial update
+- Fixed init command ignoring the COMPOSER env var for choosing the json file name
+- Fixed error reporting bug when the dependency resolution fails
+- Fixed handling of `$` sign in composer config command in some cases it could corrupt the json file

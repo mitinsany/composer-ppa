@@ -1,0 +1,8 @@
+  * Fixed PHP 8.1 deprecation warnings (#10008)
+  * Fixed support for working within UNC/WSL paths on Windows (#9993)
+  * Fixed 7-zip support to also be looked up on Linux/macOS as 7z or 7zz (#9951)
+  * Fixed repositories' `only`/`exclude` properties to avoid matching names as sub-strings of full package names (#10001)
+  * Fixed open_basedir regression from #9855
+  * Fixed schema errors being reported incorrectly in some conditions (#9986)
+  * Fixed `archive` command not working with async archive extraction
+  * Fixed `init` command being able to generate an invalid composer.json (#9986)

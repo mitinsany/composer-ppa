@@ -1,0 +1,5 @@
+**! Reminder:** if you are still using Composer 1.x, please upgrade. See https://blog.packagist.com/deprecating-composer-1-support/
+
+Changelog:
+
+  * Security: Fixed possible remote code execution vulnerability if composer.phar is publicly accessible, executable as PHP, and register_argc_argv is enabled in php.ini (GHSA-jm6m-4632-36hf / CVE-2023-43655)

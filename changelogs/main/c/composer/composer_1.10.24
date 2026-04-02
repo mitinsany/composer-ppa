@@ -1,0 +1,3 @@
+  * Added v1 deprecation warning when running install. Please make sure you upgrade to Composer 2, see https://blog.packagist.com/deprecating-composer-1-support/
+  * Fixed PHP 8.1 compatibility
+  * Fixed some more Windows CLI parameter escaping edge cases

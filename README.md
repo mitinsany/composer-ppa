@@ -27,6 +27,47 @@ sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-v1.list https://mitinsany
 sudo apt update
 sudo apt install composer
 ```
+
+## Changelog in Linux Mint / APT
+
+The repository publishes changelog files in:
+
+`changelogs/main/c/composer/composer_<version>`
+
+`Release` metadata includes the `Changelogs` field, so clients can fetch notes before installation.
+
+Check from CLI:
+
+```bash
+apt changelog composer
+```
+
+## Backfill Changelogs
+
+Daily auto-update (normal operation):
+
+```bash
+./update-packages.sh
+```
+
+Bootstrap / one-shot recovery for all upstream Composer releases:
+
+```bash
+./scripts/backfill-changelogs.sh --all
+```
+
+Service mode: regenerate changelogs only for current `latest`, `stable`, and `v1` versions:
+
+```bash
+./scripts/backfill-changelogs.sh --current
+```
+
+Manual metadata recovery and signing (`Release`/`InRelease`):
+
+```bash
+./scripts/update-release-changelogs.sh
+```
+
 # Sources
 
 - https://unixforum.org/viewtopic.php?t=79513

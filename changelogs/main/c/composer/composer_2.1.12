@@ -1,0 +1,3 @@
+  * Fixed issues in proxied binary files relying on `__FILE__` / `__DIR__` on php <8 (#10261)
+  * Fixed 9999999-dev being shown in some cases by the `show` command (#10260)
+  * Fixed GitHub Actions output escaping regression on PHP 8.1 (#10250)

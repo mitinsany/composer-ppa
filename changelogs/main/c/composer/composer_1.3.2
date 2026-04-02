@@ -1,0 +1,5 @@
+- Added `COMPOSER_BINARY` env var that is defined within the scope of a Composer run automatically with the path to the phar file
+- Fixed create-project ending in a detached HEAD when installing aliased packages
+- Fixed composer show not returning non-zero exit code when the package does not exist
+- Fixed `@composer` handling in scripts when --working-dir is used together with it
+- Fixed private-GitLab handling of repos with dashes in them

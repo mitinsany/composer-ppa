@@ -1,0 +1,20 @@
+### Not up to date with Composer 2 yet? Check the [alpha1 changelog](https://github.com/composer/composer/releases/2.0.0-alpha1) and [alpha2 changelog](https://github.com/composer/composer/releases/2.0.0-alpha2) and [alpha3 changelog](https://github.com/composer/composer/releases/2.0.0-alpha3) and especially the [UPGRADE](UPGRADE-2.0.md) guide first.
+
+## Try it out now and get ready for the upcoming stable release
+
+- Use `composer self-update --preview` to try the latest RC version (2.x).
+- Use `composer self-update --snapshot` to try the latest dev build (2.x).
+- Use `composer self-update --stable` to go back to stable releases (1.x for now).
+- Use `composer self-update --1` in CI/scripts if you want to pin Composer to 1.x until you are ready to migrate, this will ensure you stay on 1.x releases even once a 2.0 stable comes out.
+
+## Changelog 
+
+  * Added more advanced filtering to avoid loading all versions of all referenced packages when resolving dependencies, which should reduce memory usage further in some cases
+  * Added support for many new lib-* packages in the platform repository and improved version detection for some ext-* and lib-* packages
+  * Added an `--ask` flag to `create-project` command to make Composer prompt for the install dir name, [useful for project install instructions](https://github.com/composer/composer/pull/9181)
+  * Added support for tar in artifact repositories
+  * Added a `cache-read-only` config option to make the cache usable in read only mode for containers and such
+  * Added better error reporting for a few more specific cases
+  * Added a new optional `available-package-patterns` attribute for v2-format Composer repositories, see [UPGRADE](UPGRADE-2.0.md) for details
+  * Fixed more PHP 8 compatibility issues
+  * Lots of minor bug fixes for regressions

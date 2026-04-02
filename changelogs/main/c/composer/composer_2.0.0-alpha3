@@ -1,0 +1,19 @@
+### Not up to date with Composer 2 yet? Check the [alpha1 changelog](https://github.com/composer/composer/releases/2.0.0-alpha1) and [alpha2 changelog](https://github.com/composer/composer/releases/2.0.0-alpha2) and [UPGRADE](UPGRADE-2.0.md) guide first.
+
+## Try it out now and get ready for the upcoming stable release
+
+- Use `composer self-update --preview` to try the latest alpha/prerelease version (2.x).
+- Use `composer self-update --snapshot` to try the latest dev build (2.x).
+- Use `composer self-update --stable` to go back to stable releases (1.x for now).
+- Use `composer self-update --1` in CI/scripts if you want to pin Composer to 1.x until you are ready to migrate, this will ensure you stay on 1.x releases even once a 2.0 stable comes out.
+
+## Changelog 
+
+  * Breaking: Zip archives loaded by artifact repositories must now have a composer.json on top level, or a max of one folder on top level of the archive
+  * Added --no-dev support to `show` and `outdated` commands to skip dev requirements
+  * Added support for multiple --repository flags being passed into the `create-project` command, only useful in combination with `--add-repository` to persist them to composer.json
+  * Added a new optional `list` API endpoint for v2-format composer repositories, see [UPGRADE](UPGRADE-2.0.md) for details
+  * Fixed `show -a` command not listing anything
+  * Fixed solver bug where it ended in a "Reached invalid decision id 0"
+  * Fixed updates of git-installed packages on windows
+  * Lots of minor bug fixes

@@ -1,0 +1,1 @@
+- Fixed selfupdate on Windows + PHP 8.1 regression (#10446)

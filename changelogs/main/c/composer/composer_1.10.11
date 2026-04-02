@@ -1,0 +1,3 @@
+  * Fixed more PHP 8 compatibility issues
+  * Fixed regression in handling of CTRL-C when xdebug is loaded
+  * Fixed `status` handling of broken symlinks

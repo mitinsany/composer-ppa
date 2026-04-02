@@ -1,0 +1,6 @@
+  * Fixed detection of TTY mode, made input non-interactive automatically if STDIN is not a TTY
+  * Fixed root aliases not being present in lock file if not required by anything else
+  * Fixed `remove` command requiring a lock file to be present
+  * Fixed `Composer\InstalledVersions` to always contain up to date data during installation
+  * Fixed `status` command breaking on slow networks
+  * Fixed order of POST_PACKAGE_* events to occur together once all installations of a package batch are done

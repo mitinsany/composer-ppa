@@ -1,0 +1,4 @@
+  * Fixed version guesser to look at remote branches as well as local ones
+  * Fixed path repositories version guessing to handle edge cases where version is different from the VCS-guessed version
+  * Fixed COMPOSER env var causing issues when combined with the `global ` command
+  * Fixed a few issues dealing with PHP without openssl extension (not recommended at all but sometimes needed for testing)

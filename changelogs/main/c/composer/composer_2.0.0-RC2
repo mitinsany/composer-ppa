@@ -1,0 +1,26 @@
+### Not up to date with Composer 2 yet? Check the [alpha1 changelog](https://github.com/composer/composer/releases/2.0.0-alpha1) and [alpha2 changelog](https://github.com/composer/composer/releases/2.0.0-alpha2), [alpha3 changelog](https://github.com/composer/composer/releases/2.0.0-alpha3) and [RC1 changelog](https://github.com/composer/composer/releases/2.0.0-RC1) and especially the [UPGRADE](UPGRADE-2.0.md) guide first.
+
+## Try it out now and get ready for the upcoming stable release
+
+- Use `composer self-update --preview` to try the latest RC version (2.x).
+- Use `composer self-update --snapshot` to try the latest dev build (2.x).
+- Use `composer self-update --stable` to go back to stable releases (1.x for now).
+- Use `composer self-update --1` in CI/scripts if you want to pin Composer to 1.x until you are ready to migrate, this will ensure you stay on 1.x releases even once a 2.0 stable comes out.
+
+## Future timeline
+
+Between RC1 and RC2 we only had to do a few fixes and mostly added a couple things to help plugin authors do their job more easily. This means 2.0 is already quite stable and we see it used in the wild quite a bit. The current plan is to **release a 2.0 final before end of October**. It is almost 100% compatible with Composer 1 with the exception of plugins, so **please do try it ASAP and report any regression** you find. The lock files from v1 can be used by v2 and vice-versa, so don't worry about that.
+
+## Changelog 
+
+  * Breaking: Removed `OperationInterface::getReason` as the data was not accurate
+  * Added automatic removal of packages which are not required anymore whenever an update is done, this will purge packages previously left over by partial updates and `require`/`remove`
+  * Added shorthand aliases `-w` for `--with-dependencies` and `-W` for `--with-all-dependencies` on `update`/`require`/`remove` commands
+  * Added `COMPOSER_DEBUG_EVENTS=1` env var support for plugin authors to figure out which events are triggered when
+  * Added `setCustomCacheKey` to `PreFileDownloadEvent` and fixed a cache bug for integrations changing the processed url of package archives
+  * Added `Composer\Util\SyncHelper` for plugin authors to deal with async Promises more easily
+  * Added `$composer->getLoop()->getHttpDownloader()` to get access to the main HttpDownloader instance in plugins
+  * Added a non-zero exit code (2) and warning to `remove` command when a package to be removed could not be removed
+  * Added `--apcu-autoloader-prefix` (or `--apcu-prefix` for `dump-autoload` command) flag to let people use apcu autoloading in a deterministic output way if that is needed
+  * Fixed version guesser to look at remote branches as well as local ones
+  * Lots of minor bug fixes and improvements

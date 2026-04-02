@@ -1,0 +1,5 @@
+  * Fixed invalid return value in ComposerRepository::findPackage (#10622)
+  * Fixed many `show` command issues due to a flipped condition (#10623)
+  * Fixed `phpversion()` handling when it returns false due to an extension defining no version (#10631)
+  * Fixed `remove` command failing when no `allow-plugin` is defined in config (#10629)
+  * Performance improvement in Composer bootstrapping (version guessing) when on a feature branch (#10632)

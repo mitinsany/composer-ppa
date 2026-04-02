@@ -1,0 +1,12 @@
+  * Added build provenance attestation so you can also now download and verify phar files from GitHub releases:
+
+        gh release --repo composer/composer download --pattern composer.phar
+        gh attestation verify --repo composer/composer composer.phar
+
+  * Fixed unsupported `funding` values causing parse errors in packages (#12247)
+  * Fixed support for a few newer funding formats (#12257)
+  * Fixed InstalledVersions regression from 2.8.4 when `reload()` is used (#12269)
+  * Fixed psr-0/psr-4 rules having unstable order in `vendor/composer/autoload*.php` (#12263)
+  * Fixed a few warnings happening incorrectly in edge cases (#12284, #12268, #12283)
+
+**Full Changelog**: https://github.com/composer/composer/compare/2.8.4...2.8.5

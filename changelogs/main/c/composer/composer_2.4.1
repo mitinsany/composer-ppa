@@ -1,0 +1,4 @@
+  * Added a `COMPOSER_NO_AUDIT` env var to easily apply the new --no-audit flag in CI (#10998)
+  * Fixed `show` command showing packages in two sections, this was only meant for the `outdated` command (#11000)
+  * Fixed local git repos being copied to cache unnecessarily (#11001)
+  * Fixed git cache invalidation issue when a git tag gets created after the cache has loaded a given reference (#11004)

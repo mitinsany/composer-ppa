@@ -1,0 +1,3 @@
+  * Fixed `create-project` not triggering events while installing the root package
+  * Fixed PHP 8 compatibility issue
+  * Fixed `self-update` to avoid automatically upgrading to the next major version once it becomes stable

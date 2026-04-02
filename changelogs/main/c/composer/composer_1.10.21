@@ -1,0 +1,2 @@
+  * Fixed support for new GitHub OAuth token format
+  * Fixed processes silently ignoring the CWD when it does not exist

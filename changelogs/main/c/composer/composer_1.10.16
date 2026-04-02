@@ -1,0 +1,3 @@
+  * Added warning to `validate` command for cases where packages provide/replace a package that they also require
+  * Fixed JSON schema validation issue with PHPStorm
+  * Fixed symlink handling in `archive` command

@@ -1,0 +1,7 @@
+  * Allow installation together with composer/xdebug-handler ^3 (#10528)
+  * Fixed support for packages with no licenses in `licenses` command output (#10537)
+  * Fixed handling of `allow-plugins: false` which kept warning (#10530)
+  * Fixed enum parsing in classmap generation when the enum keyword is not lowercased (#10521)
+  * Fixed author parsing in `init` command requiring an email whereas the schema allows a name only (#10538)
+  * Fixed issues in `require` command when requiring packages which do not exist (but are provided by something else you require) (#10541)
+  * Performance improvement in pool optimization step (#10546)

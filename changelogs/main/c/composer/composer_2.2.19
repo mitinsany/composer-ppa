@@ -1,0 +1,4 @@
+  * Fixed URL sanitizer to handle new GitHub personal access tokens format (#11137)
+  * Fixed cache keys to allow `_` to avoid conflicts between package names like `a-b` and `a_b` (#11229)
+  * Fixed handling of --ignore-platform-req with upper-bound ignores to not apply to conflict rules (#11037)
+  * Fixed handling of `COMPOSER_DISCARD_CHANGES` when set to `0`

@@ -4,6 +4,7 @@ Architectures: amd64
 Components: main
 Description: Composer
  Custom apt repository for Composer (https://getcomposer.org/)
+Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
 SignWith: 610BDB5BCF6EC707
 
 Label: composer
@@ -12,6 +13,7 @@ Architectures: amd64
 Components: main
 Description: Composer
  Custom apt repository for Composer (https://getcomposer.org/)
+Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
 SignWith: 610BDB5BCF6EC707
 
 Label: composer
@@ -20,4 +22,5 @@ Architectures: amd64
 Components: main
 Description: Composer
  Custom apt repository for Composer (https://getcomposer.org/)
+Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
 SignWith: 610BDB5BCF6EC707

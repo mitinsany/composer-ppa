@@ -16,7 +16,11 @@ Main flows:
 - `conf/`: `reprepro` configuration (`distributions`, `options`).
 - `deb/`: published APT repository contents (indexes, pool, signatures).
 - `db/`: `reprepro` database files.
+- `changelogs/`: published changelog files used by APT/Mint changelog fetch.
 - `docker/`: helper scripts to prepare CI/runtime dependencies and import signing key.
+- `scripts/backfill-changelogs.sh`: regenerates changelogs (`--current` for current channels, `--all` for all Composer releases).
+- `scripts/update-release-changelogs.sh`: injects `Changelogs` into `Release` and resigns `Release.gpg` / `InRelease`.
+- `scripts/validate-release-integrity.sh`: validates release metadata/changelog integrity before commit.
 - `.github/workflows/build.yml`: scheduled/manual CI update + auto-commit pipeline.
 
 ## Working Rules For Agents
@@ -34,6 +38,7 @@ Main flows:
 5. Do not remove or rotate signing configuration (`SignWith`, key files) unless explicitly requested.
 6. If task touches library/framework usage, use MCP `context7` for documentation lookup when needed.
 7. Local package build/update workflow should run inside Docker container built from `docker/Dockerfile`.
+8. Changelog text is mandatory for package updates. Do not publish versions with empty release notes.
 
 ## Standard Local Workflow
 
@@ -42,9 +47,15 @@ Main flows:
 2. Ensure signing key is imported (CI uses `docker/decrypt.sh` with `ENCRYPTED_KEY` and `ENCRYPTED_IV`).
 3. Run update pipeline:
    - `./update-packages.sh`
+   - this is the default daily mode and performs targeted changelog updates only for changed versions
 4. Inspect resulting changes:
    - `git status`
    - verify updated versions in `packages/*/composer/package.json`
+   - run `./scripts/backfill-changelogs.sh --all` only for bootstrap/one-shot recovery
+   - run `./scripts/backfill-changelogs.sh --current` as service check for current channel versions
+   - run `./scripts/update-release-changelogs.sh` after metadata changes
+   - run `./scripts/validate-release-integrity.sh`
+   - verify changelog files in `changelogs/main/c/composer/`
    - verify `deb/` and `db/` updates were produced.
 
 ## Recommended Docker Workflow (Local)
@@ -63,6 +74,7 @@ docker run --rm -it -v "$PWD:/app" composer-ppa-builder bash -lc "./update-packa
 - No accidental edits outside task scope.
 - If versions changed:
   - matching `preinstall` download URLs are updated;
+  - changelog file exists at `changelogs/main/c/composer/composer_<version>`;
   - corresponding files in `deb/pool/main/c/composer/` exist;
   - repo metadata files under `deb/dists/<channel>/` changed consistently.
 - Commit message should clearly state channel/version upgrades.

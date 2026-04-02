@@ -1,0 +1,3 @@
+  * Fixed Bitbucket authorization detection due to API changes (#10657)
+  * Fixed validate command warning about dist/source keys if defined (#10655)
+  * Fixed deletion/handling of corrupted 0-bytes zip archives (#10666)
