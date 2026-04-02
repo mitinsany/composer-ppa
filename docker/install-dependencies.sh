@@ -11,6 +11,7 @@ DEBIAN_FRONTEND=noninteractive apt-get -qq install --yes --no-install-recommends
   reprepro \
   gnupg2 \
   jq \
+  ripgrep \
   ruby \
   sed
 
