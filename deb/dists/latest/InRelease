@@ -3,7 +3,7 @@ Hash: SHA512
 
 Label: composer
 Codename: latest
-Date: Fri, 03 Apr 2026 22:36:46 UTC
+Date: Sat, 04 Apr 2026 05:22:40 UTC
 Architectures: amd64
 Components: main
 Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
@@ -23,17 +23,17 @@ SHA256:
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmnQQP4ACgkQYQvbW89u
-xwcMSA/8C+WTLhT1Q9qUn0ny/9wCkrUEmAUw7xa0njEnfFuiR0Qtq6jj4daJ9kyn
-zOEc5wA2exqTnVHUN6jDSYZu6pjM3XfxxKjyYE0osYzhWIrUvRhgirYxZygH/8Rx
-CFJHR0JEqTiTrRpINSc/HLQRBWVi7NjcBKH+pDlig+Oo54bvOOfWWZYGRGw7Xu7p
-UjhodWE9JbliOqOb4KCuMaP9EiY0qEMoLbzUyfFfnRimw7yhrQRSbJxN038EQ20R
-4Xv6HEWcOJEzpHjqx1fzWyKGoz0ZvwUXF4BIvZcmf4veYQkN8Ivyk8BwaN5azRzm
-W+YH0M6Auh4rYIc2Wwzm0EEwieO3najNQVlbYhMztbyeze1gudaUsTMOupmReNFg
-zy+bclhClqYF2AzzpyE2xh0KG+xnUsf5Nz8pxYbqhpXq7b4FlrDsyP1G9i/NXllF
-yJ5e/SgO2LR2VHgcDBl3jbj6p+UlONWJynY8KAUFZFRedyuKDqXkVKCdEz+RGmwn
-BSDzAq/xeJFB70hplbsh85EOoIVbSA/9lu03cwWh4rb7CzXlHt69At88TKSllbrD
-9THAYVkO0HDRgzsobBiYkGX7vNG99xdJORda1aUTsWr0lN0/ltibtYjznQ9L83mp
-q8AVHs7nWDe0vwxeq/s1tE/kbk6lvWIqPRlSvBciq5x0ZAs6Frc=
-=LFoe
+iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmnQoCAACgkQYQvbW89u
+xwctvQ/9H9aYuC8vAXw5MG1cUmo6MgK5R3T7YQI1skfo+p5Qj8xfRgvHd0F80Ngx
+7oIMNoolPNgpaIWJuphUAHsVBikgm8c7/I1L2odCJCjZQ5y3rgRz6MXqBjYpExvj
+Bt2qI58bBfYBOu5vSTnDsgx7yho8Jz4vIXD++AQrtx0h3JOZVHGVFhJSIbjgA30P
+QKBn9AWGcBL7a/RO26ZbpTyvMR81p8HYdA0nPEj0e2URd1lpTA4HGyf/lZAQ/lH4
+CnxsCHV74J/J5hor3ECch6oPYcL0tEUTioeEdWvZbS2dzBrIRploq20r2B0FVPlE
+6+czkb/eMIWa3vBxpULLJFuum1G94jo7hSCzOVLCMVPT0JYGUWmn/Y4X7i1DfBtQ
+EmiEWiHuVvpv+oyeMlhlLaUA9QbAKDocvXDl1taRNIWR2BGhs3YK8qOIcxUPRVl/
+wfrlzsb38ii6q14SRxetBi8qGZikaE/pPBnk0tXXEIKhsrLQk8UeqO87PtqGDPtz
+v7P+WpAtdxoXg1B09Kk3pKyoksXkPFWBK95Q4EiJE46EFnZm4azIV66i7rOfXOEU
+iydphwE3k6hm2Ad3FRm7NACha7jsAPLkMUQ2CaCh/jT4nbVeWp8FZKjHVMcm6dD2
+QQx8KU1ZEwHxyLgWODlSp1yD9VqT+XnAWXcStuWB71/oAC8Z75M=
+=y+Vc
 -----END PGP SIGNATURE-----
