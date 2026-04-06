@@ -214,5 +214,9 @@ while true; do
     page=$((page + 1))
 done
 
-reprepro --outdir ./deb --ignore=unknownfield export latest stable v1
-"${SCRIPT_DIR}/update-release-changelogs.sh"
+if [ -s "commit.txt" ]; then
+    reprepro --outdir ./deb --ignore=unknownfield export latest stable v1
+    "${SCRIPT_DIR}/update-release-changelogs.sh"
+else
+    echo "[I] No package updates detected. Skipping repository metadata export/sign."
+fi
