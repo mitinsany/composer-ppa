@@ -28,6 +28,40 @@ sudo apt update
 sudo apt install composer
 ```
 
+## Install via deb822 (.sources) (recommended)
+
+Legacy `.list` format above is kept for compatibility, but `deb822` `.sources` is recommended for new setups.
+If Ubuntu repository has a higher package revision (for example `2.9.5-1` vs `2.9.5`), `apt install composer`
+may select Ubuntu package. To force this repository package, install an explicit version, for example:
+`sudo apt install composer=2.9.5`.
+
+### For stable latest 2.\* versions
+
+```bash
+sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/composer-ppa.gpg
+sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-latest.sources https://mitinsany.github.io/composer-ppa/sources.list.d/composer-ppa-latest.sources
+sudo apt update
+sudo apt install composer
+```
+
+### For stable (LTS) 2.2.\* versions
+
+```bash
+sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/composer-ppa.gpg
+sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-stable.sources https://mitinsany.github.io/composer-ppa/sources.list.d/composer-ppa-stable.sources
+sudo apt update
+sudo apt install composer
+```
+
+### For old 1.\*.\* versions
+
+```bash
+sudo curl -SsL -o /usr/share/keyrings/composer-ppa.gpg https://mitinsany.github.io/composer-ppa/composer-ppa.gpg
+sudo curl -SsL -o /etc/apt/sources.list.d/composer-ppa-v1.sources https://mitinsany.github.io/composer-ppa/sources.list.d/composer-ppa-v1.sources
+sudo apt update
+sudo apt install composer
+```
+
 ## Changelog in Linux Mint / APT
 
 The repository publishes changelog files in:

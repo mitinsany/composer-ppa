@@ -1,0 +1,6 @@
+Types: deb
+URIs: https://mitinsany.github.io/composer-ppa/deb
+Suites: v1
+Components: main
+Architectures: amd64
+Signed-By: /usr/share/keyrings/composer-ppa.gpg
