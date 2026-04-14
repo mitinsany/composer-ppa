@@ -1,6 +1,6 @@
 {
   "code": "composer-stable",
-  "version": "2.2.26",
+  "version": "2.2.27",
   "description": "Dependency Management for PHP",
   "version_regexp": "2.2.*"
 }
