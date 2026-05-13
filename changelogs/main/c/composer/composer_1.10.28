@@ -1,0 +1,1 @@
+* Security: Fixed GitHub token validation and disclosure: https://github.com/composer/composer/security/advisories/GHSA-f9f8-rm49-7jv2 CVE ID pending
