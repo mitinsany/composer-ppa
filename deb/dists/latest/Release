@@ -1,20 +1,20 @@
 Label: composer
 Codename: latest
-Date: Wed, 13 May 2026 12:07:16 UTC
+Date: Thu, 28 May 2026 13:54:07 UTC
 Architectures: amd64
 Components: main
 Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:
- 408ac2380e6919f1f6b661628a98f7f1 529 main/binary-amd64/Packages
- a12908011f3b4572694bc8093a0202dd 383 main/binary-amd64/Packages.gz
+ 8162e69006ff242a11beacbb9601b264 531 main/binary-amd64/Packages
+ c622901cb0775164a4b94b9161c1c360 383 main/binary-amd64/Packages.gz
  12c0b7bb7f0458c2f33e69d159a746fb 136 main/binary-amd64/Release
 SHA1:
- 4d09f0e2c58c41c3ddad05a71ea3845423d2ee93 529 main/binary-amd64/Packages
- 06764824db4ad674998f262071fb03f5f74ef5db 383 main/binary-amd64/Packages.gz
+ 3b6be97df2e96356effb2a67db87397c5c61ee44 531 main/binary-amd64/Packages
+ 8e4ef4495c97efa88a0080eb6de51d19af9149aa 383 main/binary-amd64/Packages.gz
  f5f6b2596894e4df8c8eab47fc92ce9cabd05454 136 main/binary-amd64/Release
 SHA256:
- 53a63e68c3921e55647697bebf9471ac36aa9a992a54fe88b50e5480f6334244 529 main/binary-amd64/Packages
- a421f9fe491a8347ba961a084f184bb774fec08cfc21ad8a6899d64f7d319f5b 383 main/binary-amd64/Packages.gz
+ d2953186641463719ae6bdbe9cd2af23a77059de4c2049e3caf08af808ba6e7d 531 main/binary-amd64/Packages
+ 1f53e8567289e8e9f57435adb7ac9af7b80b8f40260f2c75343828b83a5c5aab 383 main/binary-amd64/Packages.gz
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
