@@ -22,13 +22,16 @@ on:
         type: environment
         required: true
 
+permissions:
+  contents: write
+
+concurrency:
+  group: composer-ppa-publish
+  cancel-in-progress: false
+
 jobs:
     build:
         runs-on: ubuntu-24.04
-        env:
-          ENCRYPTED_KEY: ${{ secrets.ENCRYPTED_KEY }}
-          ENCRYPTED_IV: ${{ secrets.ENCRYPTED_IV }}
-          GH_TOKEN: ${{ github.token }}
         steps:
             - name: Checkout
               uses: actions/checkout@v5
@@ -38,9 +41,17 @@ jobs:
 
             - name: Do key handling
               run: ./scripts/docker/decrypt.sh
+              env:
+                ENCRYPTED_KEY: ${{ secrets.ENCRYPTED_KEY }}
+                ENCRYPTED_IV: ${{ secrets.ENCRYPTED_IV }}
+
+            - name: Run tests
+              run: ./tests/run.sh
 
             - name: Update packages
               run: ./scripts/update-packages.sh
+              env:
+                GH_TOKEN: ${{ github.token }}
 
             - name: Validate repository metadata
               run: ./scripts/validate-release-integrity.sh

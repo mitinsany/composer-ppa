@@ -1,71 +1,86 @@
 #!/usr/bin/env bash
 
-set -uo pipefail
+set -euo pipefail
 
-CHANGELOGS_DIR="changelogs/main/c/composer"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SCRIPT_DIR="${ROOT_DIR}/scripts"
+CHANGELOGS_DIR="${ROOT_DIR}/changelogs/main/c/composer"
+DEBIAN_REVISION="1"
 source "${SCRIPT_DIR}/github-api.sh"
 
-function update_package_version {
-    local package
-    local new_version
-    local download_url
-    local package_json
-    local preinstall
-    package="$1"
-    new_version="$2"
-    download_url="$3"
-    package_json="${package}/package.json"
-    preinstall="${package}/preinstall"
+update_package_template() {
+    local package_dir="$1"
+    local package_version="$2"
+    local upstream_version="$3"
+    local download_url="$4"
+    local download_sha256="$5"
+    local package_json="${package_dir}/package.json"
 
-    jq ".version = \"${new_version}\"" "${package_json}" > version-update.json
-    mv version-update.json "${package_json}"
-
-    sed -i "/wget/s|https://[^\"]*|${download_url}|" "${preinstall}"
+    jq \
+        --arg version "${package_version}" \
+        --arg upstream_version "${upstream_version}" \
+        --arg download_url "${download_url}" \
+        --arg download_sha256 "${download_sha256}" \
+        '.version = $version
+            | .upstream_version = $upstream_version
+            | .download_url = $download_url
+            | .download_sha256 = $download_sha256' \
+        "${package_json}" > "${package_json}.tmp"
+    mv "${package_json}.tmp" "${package_json}"
 }
 
-function compare_version {
+compare_version() {
     dpkg --compare-versions "$1" lt "$2"
 }
 
-function is_strict_stable_version {
+package_needs_update() {
+    local local_version="$1"
+    local remote_version="$2"
+    local local_sha256="$3"
+    local package_file="$4"
+
+    if compare_version "${local_version}" "${remote_version}"; then
+        return 0
+    fi
+    if dpkg --compare-versions "${local_version}" eq "${remote_version}" \
+        && { ! [[ "${local_sha256}" =~ ^[0-9a-f]{64}$ ]] || [ ! -f "${package_file}" ]; }; then
+        return 0
+    fi
+    return 1
+}
+
+is_strict_stable_version() {
     local version="$1"
     [[ "${version}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
 }
 
-function ensure_changelogs_dir {
-    mkdir -p "${CHANGELOGS_DIR}"
-}
-
-function require_non_empty_release_body {
+require_non_empty_release_body() {
     local release_body="$1"
     grep -q '[^[:space:]]' <<< "${release_body}"
 }
 
-function write_public_changelog {
+write_public_changelog() {
     local version="$1"
     local release_body="$2"
-    local changelog_path="${CHANGELOGS_DIR}/composer_${version}"
-    printf "%s\n" "${release_body}" > "${changelog_path}"
+    mkdir -p "${CHANGELOGS_DIR}"
+    printf "%s\n" "${release_body}" > "${CHANGELOGS_DIR}/composer_${version}"
 }
 
-function version_matches_channel_pattern {
+version_matches_channel_pattern() {
     local version="$1"
     local pattern="$2"
-
     local major minor patch
+
     IFS='.' read -r major minor patch <<< "${version}"
 
     if [[ "${pattern}" =~ ^([0-9]+)\.\*\.\*$ ]]; then
         [ "${major}" = "${BASH_REMATCH[1]}" ]
         return
     fi
-
     if [[ "${pattern}" =~ ^([0-9]+)\.([0-9]+)\.\*$ ]]; then
         [ "${major}" = "${BASH_REMATCH[1]}" ] && [ "${minor}" = "${BASH_REMATCH[2]}" ]
         return
     fi
-
     if [[ "${pattern}" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
         [ "${major}" = "${BASH_REMATCH[1]}" ] && [ "${minor}" = "${BASH_REMATCH[2]}" ] && [ "${patch}" = "${BASH_REMATCH[3]}" ]
         return
@@ -74,149 +89,137 @@ function version_matches_channel_pattern {
     [[ "${version}" == ${pattern} ]]
 }
 
-function process_git_releases_page {
-    local page="$1"
+download_composer_phar() {
+    local download_url="$1"
+    local artifact
+    artifact="$(mktemp)"
 
+    if ! curl -fL --retry 3 --retry-all-errors --connect-timeout 15 "${download_url}" -o "${artifact}"; then
+        rm -f "${artifact}"
+        return 1
+    fi
+
+    printf '%s\n' "${artifact}"
+}
+
+process_git_releases_page() {
+    local page="$1"
     local releases_json
+    local releases_count
+
     releases_json="$(mktemp)"
     if ! github_releases_page_json "${page}" > "${releases_json}"; then
         rm -f "${releases_json}"
         return 1
     fi
 
-    local releases_count
     releases_count="$(jq '. | length' "${releases_json}")"
     if [ "${releases_count}" -eq 0 ]; then
         rm -f "${releases_json}"
         return 2
     fi
 
-    find packages/* -maxdepth 1 -mindepth 1 -type d -print0 | while read -d $'\0' PACKAGE_DIR
-    do
-        local PACKAGE_JSON="${PACKAGE_DIR}/package.json"
+    for package_json in packages/*/composer/package.json; do
+        local package_dir
+        local code
+        local version_pattern
+        package_dir="$(dirname "${package_json}")"
+        code="$(jq --raw-output --exit-status '.code' "${package_json}")"
+        version_pattern="$(jq --raw-output --exit-status '.version_regexp' "${package_json}")"
 
-        local CODE
-        CODE="$(jq --raw-output --exit-status ".code" "${PACKAGE_JSON}")"
-        if [ -z "${CODE}" ]; then
-            >&2 echo "[E] Cannot find 'code' key within ${PACKAGE_JSON}"
-            continue
-        fi
+        for ((i=0; i < releases_count; i++)); do
+            local draft prerelease remote_version remote_package_version
+            local local_version local_sha256 download_url release_body package_file
+            local artifact download_sha256 changelog_filename channel deb_file
 
-        if [ ! -f "${PACKAGE_JSON}" ]; then
-            >&2 echo "[E] Cannot find ${PACKAGE_JSON}"
-            continue
-        fi
+            draft="$(jq --raw-output --exit-status ".[${i}].draft" "${releases_json}")"
+            prerelease="$(jq --raw-output --exit-status ".[${i}].prerelease" "${releases_json}")"
+            remote_version="$(jq --raw-output --exit-status ".[${i}].tag_name // \"\"" "${releases_json}")"
+            download_url="$(jq --raw-output --exit-status ".[${i}] | [.assets[]? | select(.name == \"composer.phar\")][0].browser_download_url // \"\"" "${releases_json}")"
+            release_body="$(jq --raw-output --exit-status ".[${i}].body // \"\"" "${releases_json}")"
+            local_version="$(jq --raw-output --exit-status '.version' "${package_json}")"
+            local_sha256="$(jq --raw-output '.download_sha256 // ""' "${package_json}")"
+            remote_package_version="${remote_version}-${DEBIAN_REVISION}"
+            package_file="deb/pool/main/c/composer/composer_${remote_package_version}_amd64.deb"
 
-        local VERSION_REGEXP
-        VERSION_REGEXP="$(jq --raw-output --exit-status ".version_regexp" "${PACKAGE_JSON}")"
-
-        for (( i=0; i < releases_count; i++ ))
-        do
-            local DRAFT
-            local PRERELEASE
-            local TAG_VERSION
-            local RELEASE_NAME
-            local REMOTE_VERSION
-            local LOCAL_VERSION
-            local DOWNLOAD_URL
-            local SIZE
-            local RELEASE_BODY
-
-            DRAFT="$(jq --raw-output --exit-status ".[${i}].draft" "${releases_json}")"
-            PRERELEASE="$(jq --raw-output --exit-status ".[${i}].prerelease" "${releases_json}")"
-            TAG_VERSION="$(jq --raw-output --exit-status ".[${i}].tag_name // \"\"" "${releases_json}")"
-            RELEASE_NAME="$(jq --raw-output --exit-status ".[${i}].name // \"\"" "${releases_json}")"
-            REMOTE_VERSION="${TAG_VERSION}"
-            [ -z "${REMOTE_VERSION}" ] && REMOTE_VERSION="${RELEASE_NAME}"
-            LOCAL_VERSION="$(jq --raw-output --exit-status ".version" "${PACKAGE_JSON}")"
-            DOWNLOAD_URL="$(jq --raw-output --exit-status ".[${i}].assets[0].browser_download_url // \"\"" "${releases_json}")"
-            SIZE="$(jq --raw-output --exit-status ".[${i}].assets[0].size // 0" "${releases_json}")"
-            RELEASE_BODY="$(jq --raw-output --exit-status ".[${i}].body // \"\"" "${releases_json}")"
-
-            if [[ ${DRAFT} == true || ${PRERELEASE} == true ]]; then
-                >&2 printf "[I] %3s Draft/Prerelease version: %10s. Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
+            if [ "${draft}" = true ] || [ "${prerelease}" = true ]; then
                 continue
             fi
-
-            if [ -z "${LOCAL_VERSION}" ] || [ -z "${REMOTE_VERSION}" ]; then
-                >&2 echo "[E] Both 'LOCAL_VERSION' and 'REMOTE_VERSION' must be set. Probably a curl / jq error."
+            if [ -z "${remote_version}" ] || ! is_strict_stable_version "${remote_version}"; then
                 continue
             fi
-
-            if [ -z "${TAG_VERSION}" ]; then
-                >&2 printf "[E] %3s: Missing tag_name for release (%10s). Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
+            if ! version_matches_channel_pattern "${remote_version}" "${version_pattern}"; then
                 continue
             fi
-
-            if [ -z "${DOWNLOAD_URL}" ] || [ "${SIZE}" -le 0 ]; then
-                >&2 printf "[E] %3s: Missing release asset for version (%10s). Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
-                continue
+            if [ -z "${download_url}" ]; then
+                >&2 printf "[E] %s: composer.phar asset is missing for %s.\n" "${code}" "${remote_version}"
+                rm -f "${releases_json}"
+                return 1
+            fi
+            if ! require_non_empty_release_body "${release_body}"; then
+                >&2 printf "[E] %s: Release notes are empty for %s.\n" "${code}" "${remote_version}"
+                rm -f "${releases_json}"
+                return 1
+            fi
+            if ! package_needs_update "${local_version}" "${remote_package_version}" "${local_sha256}" "${package_file}"; then
+                >&2 printf "[I] %s: Local (%s) >= Remote (%s). Skipped.\n" "${code}" "${local_version}" "${remote_package_version}"
+                break
             fi
 
-            if ! require_non_empty_release_body "${RELEASE_BODY}"; then
-                >&2 printf "[E] %3s: Release notes are empty for version (%10s). Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
-                continue
-            fi
+            printf "[I] %s: Local (%s) -> Remote (%s). Updating.\n" "${code}" "${local_version}" "${remote_package_version}"
+            artifact="$(download_composer_phar "${download_url}")"
+            download_sha256="$(sha256sum "${artifact}" | awk '{print $1}')"
+            rm -f "${artifact}"
 
-            if ! is_strict_stable_version "${REMOTE_VERSION}"; then
-                >&2 printf "[I] %3s: Non-stable version (%10s) -> Skipped.\n" "${CODE}" "${REMOTE_VERSION}"
-                continue
-            fi
+            write_public_changelog "${remote_package_version}" "${release_body}"
+            update_package_template "${package_dir}" "${remote_package_version}" "${remote_version}" "${download_url}" "${download_sha256}"
 
-            if ! version_matches_channel_pattern "${REMOTE_VERSION}" "${VERSION_REGEXP}"; then
-                >&2 printf "[I] %3s: Regexp (%10s) == Remote (%10s) -> Skipped, because regexp.\n" "${CODE}" "${VERSION_REGEXP}" "${REMOTE_VERSION}"
-                continue
-            fi
-
-            if ! compare_version "${LOCAL_VERSION}" "${REMOTE_VERSION}"; then
-                >&2 printf "[I] %3s: Local (%10s) == Remote (%10s) -> Skipped, low version.\n" "${CODE}" "${LOCAL_VERSION}" "${REMOTE_VERSION}"
-                continue
-            fi
-
-            printf "[I] %3s: Local (%10s) != Remote (%10s) -> Updating.\n" "${CODE}" "${LOCAL_VERSION}" "${REMOTE_VERSION}"
-
-            ensure_changelogs_dir
-            write_public_changelog "${REMOTE_VERSION}" "${RELEASE_BODY}"
-            update_package_version "${PACKAGE_DIR}" "${REMOTE_VERSION}" "${DOWNLOAD_URL}"
-
-            local CHANGELOG_FILENAME="changelog-composer-${REMOTE_VERSION}.dsc"
-            [ -f "${CHANGELOG_FILENAME}" ] && rm "${CHANGELOG_FILENAME}"
-            printf "%s\n" "${RELEASE_BODY}" > "/tmp/${CHANGELOG_FILENAME}"
-
-            "${SCRIPT_DIR}/build-single-deb.sh" "${PACKAGE_DIR}" "${CHANGELOG_FILENAME}" "${SIZE}"
-            STABILITY="$(echo "${PACKAGE_DIR}" | cut -d/ -f2)"
-            DEB_FILE="$(ls -c /tmp/*.deb | head -n 1)"
-            reprepro --outdir ./deb --ignore=unknownfield -C main includedeb "${STABILITY}" "${DEB_FILE}"
-            echo "Upgrade ${CODE}: ${LOCAL_VERSION} -> ${REMOTE_VERSION}" >> "commit.txt"
+            changelog_filename="changelog-composer-${remote_package_version}.dsc"
+            printf "%s\n" "${release_body}" > "/tmp/${changelog_filename}"
+            deb_file="/tmp/composer_${remote_package_version}_amd64.deb"
+            rm -f "${deb_file}"
+            "${SCRIPT_DIR}/build-single-deb.sh" "${package_dir}" "${changelog_filename}"
+            channel="$(basename "$(dirname "${package_dir}")")"
+            reprepro --outdir ./deb --ignore=unknownfield -C main includedeb "${channel}" "${deb_file}"
+            echo "Upgrade ${code}: ${local_version} -> ${remote_package_version}" >> commit.txt
+            break
         done
     done
 
     rm -f "${releases_json}"
-    return 0
 }
 
-[ -f "commit.txt" ] && rm -f "commit.txt"
+main() {
+    local page=1
+    local status
 
-page=1
-while true; do
-    if process_git_releases_page "${page}"; then
-        status=0
+    cd "${ROOT_DIR}"
+    [ -f commit.txt ] && rm -f commit.txt
+
+    while true; do
+        if process_git_releases_page "${page}"; then
+            status=0
+        else
+            status=$?
+        fi
+        if [ "${status}" -eq 2 ]; then
+            break
+        fi
+        if [ "${status}" -ne 0 ]; then
+            >&2 echo "[E] Cannot process releases page ${page}."
+            exit 1
+        fi
+        page=$((page + 1))
+    done
+
+    if [ -s commit.txt ]; then
+        reprepro --outdir ./deb --ignore=unknownfield export latest stable v1
+        "${SCRIPT_DIR}/update-release-changelogs.sh"
     else
-        status=$?
+        echo "[I] No package updates detected. Skipping repository metadata export/sign."
     fi
-    if [ "${status}" -eq 2 ]; then
-        break
-    fi
-    if [ "${status}" -ne 0 ]; then
-        >&2 echo "[E] Cannot process releases page ${page}."
-        exit 1
-    fi
-    page=$((page + 1))
-done
+}
 
-if [ -s "commit.txt" ]; then
-    reprepro --outdir ./deb --ignore=unknownfield export latest stable v1
-    "${SCRIPT_DIR}/update-release-changelogs.sh"
-else
-    echo "[I] No package updates detected. Skipping repository metadata export/sign."
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+    main "$@"
 fi

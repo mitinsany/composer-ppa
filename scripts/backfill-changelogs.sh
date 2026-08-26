@@ -26,6 +26,18 @@ release_matches_current_versions() {
     return 1
 }
 
+package_version_for_upstream() {
+    local version="$1"
+    local index
+    for index in "${!current_upstream_versions[@]}"; do
+        if [ "${current_upstream_versions[${index}]}" = "${version}" ]; then
+            printf '%s\n' "${current_package_versions[${index}]}"
+            return 0
+        fi
+    done
+    return 1
+}
+
 mkdir -p "${CHANGELOGS_DIR}"
 
 if [ "${MODE}" != "--current" ] && [ "${MODE}" != "--all" ]; then
@@ -37,18 +49,19 @@ if [ "${MODE}" = "--all" ]; then
     rm -f "${CHANGELOGS_DIR}"/composer_*
 fi
 
-current_versions=()
-if [ "${MODE}" = "--current" ]; then
-    for channel in "${CHANNELS[@]}"; do
-        package_json="${ROOT_DIR}/packages/${channel}/composer/package.json"
-        version="$(jq --raw-output --exit-status ".version" "${package_json}")"
-        if [ -z "${version}" ]; then
-            >&2 echo "[E] Cannot read version from ${package_json}"
-            exit 1
-        fi
-        current_versions+=("${version}")
-    done
-fi
+current_upstream_versions=()
+current_package_versions=()
+for channel in "${CHANNELS[@]}"; do
+    package_json="${ROOT_DIR}/packages/${channel}/composer/package.json"
+    package_version="$(jq --raw-output --exit-status '.version' "${package_json}")"
+    upstream_version="$(jq --raw-output --exit-status '.upstream_version // (.version | split("-")[0])' "${package_json}")"
+    if [ -z "${package_version}" ] || [ -z "${upstream_version}" ]; then
+        >&2 echo "[E] Cannot read versions from ${package_json}"
+        exit 1
+    fi
+    current_upstream_versions+=("${upstream_version}")
+    current_package_versions+=("${package_version}")
+done
 
 page=1
 written=0
@@ -74,7 +87,7 @@ while true; do
             exit 1
         fi
 
-        if [ "${MODE}" = "--current" ] && ! release_matches_current_versions "${version}" "${current_versions[@]}"; then
+        if [ "${MODE}" = "--current" ] && ! release_matches_current_versions "${version}" "${current_upstream_versions[@]}"; then
             continue
         fi
 
@@ -83,10 +96,21 @@ while true; do
             exit 1
         fi
 
-        changelog_path="${CHANGELOGS_DIR}/composer_${version}"
+        changelog_version="${version}"
+        if package_version="$(package_version_for_upstream "${version}")"; then
+            changelog_version="${package_version}"
+        fi
+        changelog_path="${CHANGELOGS_DIR}/composer_${changelog_version}"
         printf "%s\n" "${release_body}" > "${changelog_path}"
         written=$((written + 1))
         echo "[I] Wrote ${changelog_path}"
+
+        if [ "${MODE}" = "--all" ] && [ "${changelog_version}" != "${version}" ]; then
+            upstream_changelog_path="${CHANGELOGS_DIR}/composer_${version}"
+            printf "%s\n" "${release_body}" > "${upstream_changelog_path}"
+            written=$((written + 1))
+            echo "[I] Wrote ${upstream_changelog_path}"
+        fi
     done < <(jq -c '.[] | select(.draft | not)' "${releases_json}")
 
     rm -f "${releases_json}"

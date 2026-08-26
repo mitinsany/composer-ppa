@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+COMPOSER_DOWNLOAD_URL='@DOWNLOAD_URL@'
+COMPOSER_DOWNLOAD_SHA256='@DOWNLOAD_SHA256@'
+install_dir="${COMPOSER_INSTALL_DIR:-/usr/local/bin}"
+target_binary="${install_dir}/composer"
+staged_binary="$(mktemp "${install_dir}/.composer-install.XXXXXX")"
+
+cleanup() {
+    if [ -n "${staged_binary}" ]; then
+        rm -f "${staged_binary}"
+    fi
+}
+trap cleanup EXIT
+
+curl -fL --retry 3 --retry-all-errors --connect-timeout 15 "${COMPOSER_DOWNLOAD_URL}" -o "${staged_binary}"
+printf '%s  %s\n' "${COMPOSER_DOWNLOAD_SHA256}" "${staged_binary}" | sha256sum --check --status
+chown root:root "${staged_binary}"
+chmod 0755 "${staged_binary}"
+mv "${staged_binary}" "${target_binary}"
+staged_binary=''

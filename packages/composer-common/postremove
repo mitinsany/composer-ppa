@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+case "${1:-}" in
+    remove|purge)
+        rm -f /usr/local/bin/composer
+        ;;
+esac
+

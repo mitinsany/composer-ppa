@@ -1,6 +1,9 @@
 {
   "code": "composer-v1",
-  "version": "1.10.28",
+  "version": "1.10.28-1",
   "description": "Dependency Management for PHP",
-  "version_regexp": "1.*.*"
+  "version_regexp": "1.*.*",
+  "upstream_version": "1.10.28",
+  "download_url": "https://github.com/composer/composer/releases/download/1.10.28/composer.phar",
+  "download_sha256": "0915af36eb01e3f0e16cd309adff7051832b9ef014e38371756804b20425cd5a"
 }

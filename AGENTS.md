@@ -11,8 +11,9 @@ Main flows:
 ## Project Map
 
 - `scripts/update-packages.sh`: main automation entrypoint; fetches releases, updates package templates, builds and includes `.deb` into the repo.
-- `scripts/build-single-deb.sh`: builds one Debian package from a package template folder.
-- `packages/<channel>/composer/`: package templates (`package.json`, install/remove scripts).
+- `scripts/build-single-deb.sh`: renders shared maintainer scripts and builds one Debian package from a channel template.
+- `packages/<channel>/composer/`: channel metadata (`package.json`) with upstream version, download URL, and SHA-256.
+- `packages/composer-common/`: shared atomic install/remove script templates.
 - `conf/`: `reprepro` configuration (`distributions`, `options`).
 - `deb/`: published APT repository contents (indexes, pool, signatures).
 - `db/`: `reprepro` database files.
@@ -73,10 +74,12 @@ docker run --rm -it -v "$PWD:/app" composer-ppa-builder bash -lc "./scripts/upda
 ## Validation Checklist Before Commit
 
 - Scripts still pass shell syntax checks:
-  - `bash -n scripts/update-packages.sh scripts/build-single-deb.sh scripts/docker/*.sh`
+  - `bash -n scripts/*.sh scripts/docker/*.sh packages/composer-common/* tests/*.sh`
+- Repository tests pass:
+  - `./tests/run.sh`
 - No accidental edits outside task scope.
 - If versions changed:
-  - matching `preinstall` download URLs are updated;
+  - matching package metadata contains the upstream version, download URL, and SHA-256;
   - changelog file exists at `changelogs/main/c/composer/composer_<version>`;
   - corresponding files in `deb/pool/main/c/composer/` exist;
   - repo metadata files under `deb/dists/<channel>/` changed consistently.
@@ -86,4 +89,4 @@ docker run --rm -it -v "$PWD:/app" composer-ppa-builder bash -lc "./scripts/upda
 
 - `scripts/update-packages.sh` rewrites package templates and repo state; run from repository root.
 - Packaging scripts operate on `/tmp` and may overwrite temp files with fixed names.
-- Package install scripts write to `/usr/local/bin` in target systems; be careful when changing install/remove logic.
+- Package install scripts atomically replace `/usr/local/bin/composer` after verifying SHA-256; be careful when changing install/remove logic.

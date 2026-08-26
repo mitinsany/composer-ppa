@@ -1,7 +1,0 @@
-#!/bin/bash
-
-set -e
-
-cd /usr/local/bin/
-mv composer.phar composer
-chmod +x composer

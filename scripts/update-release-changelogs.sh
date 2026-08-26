@@ -31,6 +31,7 @@ inject_changelogs_header() {
     ' "${release_file}" > "${tmp_file}"
 
     mv "${tmp_file}" "${release_file}"
+    chmod 0644 "${release_file}"
 }
 
 if ! gpg --list-secret-keys --keyid-format LONG "${SIGNING_KEY}" >/dev/null 2>&1; then

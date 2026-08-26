@@ -3,9 +3,9 @@ A PPA (unofficial) repository for Composer (Dependency Management for PHP. See h
 # Usage
 
 ## Install via deb822 (.sources)
-If Ubuntu repository has a higher package revision (for example `2.9.5-1` vs `2.9.5`), `apt install composer`
-may select Ubuntu package. To force this repository package, install an explicit version, for example:
-`sudo apt install composer=2.9.5`.
+If the Ubuntu repository has a higher package version, `apt install composer` may select the Ubuntu package.
+Use `apt-cache policy composer` to find this repository's current version and install it explicitly with
+`sudo apt install composer=<version>`.
 
 ### For stable latest 2.\* versions
 
