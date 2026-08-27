@@ -3,37 +3,37 @@ Hash: SHA512
 
 Label: composer
 Codename: latest
-Date: Wed, 26 Aug 2026 12:03:49 UTC
+Date: Thu, 27 Aug 2026 15:01:42 UTC
 Architectures: amd64
 Components: main
 Changelogs: https://mitinsany.github.io/composer-ppa/changelogs/@CHANGEPATH@
 Description: Composer
 Custom apt repository for Composer (https://getcomposer.org/)
 MD5Sum:
- a4185047b486d1afd7e9f8e4816bf172 528 main/binary-amd64/Packages
- 4f546fae1749b8f8a36aef71a41a6551 381 main/binary-amd64/Packages.gz
+ 2b751212694b4ee41d3e6ac7e4538468 528 main/binary-amd64/Packages
+ 01dc32501fab7a0bb78318b7db7935a8 380 main/binary-amd64/Packages.gz
  12c0b7bb7f0458c2f33e69d159a746fb 136 main/binary-amd64/Release
 SHA1:
- fc6bab2c33135032db70c9bde0ba466dac610240 528 main/binary-amd64/Packages
- 16a10bcebb3ef8cbd6d2e22416e80ebf9cdd9d3a 381 main/binary-amd64/Packages.gz
+ 53ddc5ad4183f951c2ead87183c9d48bcc90e6a7 528 main/binary-amd64/Packages
+ 5b25d1871fc076586aca4dfc2005686d7fd868a4 380 main/binary-amd64/Packages.gz
  f5f6b2596894e4df8c8eab47fc92ce9cabd05454 136 main/binary-amd64/Release
 SHA256:
- 2a2f930be6ae27a955cd5bf8694ae3ce9efecf8a414427cc140126be9009724f 528 main/binary-amd64/Packages
- 968e1e3d6c55c229c5302badc8b53657c1dec47300da7318817c08b5ac93eed2 381 main/binary-amd64/Packages.gz
+ 920e77270dc1044eec89662c827e16ce63bb9b3f824bc2977ebd41686b37742c 528 main/binary-amd64/Packages
+ 77f6fe3dd7d5791a5c9f0b832033339ceef09e0080eadf8aa804df95d82b611f 380 main/binary-amd64/Packages.gz
  0ec3cde3811384289e1286bd0da43c239ea81da35cb375177247e004415db79f 136 main/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmqO1iUACgkQYQvbW89u
-xwdEmw/8CcclUlkuXeeXqkiQCVctPG0HboIdIF71ulBJWOmK1XvZxwIcrO6nL9A8
-VJ6XabZ6idvJOONX/YnDYDF4e/KnMKcjKNUFORLac5ngyvJf0EjTK5D6sHbzM7pR
-SzEBRoxr5z/pzUUXcSybwKX9PcovqHesdY1FXZ5HuYSyRT98mytt4Q18PBIc+ykU
-8BYWa0KLSMt5XCg/kIqk9PbT7oBkZO6H11cR+l5jusiyiK5hMzH9z12/dtjiQayn
-oDmZzdzZKXpIpklaiwzIxoJ6B58vc4g6qHECc56tGU6po+kY39MDPGtrpbGiZL6S
-0fOu4pcVS7V0KR+Ufica4VR5Skju5Szpuan0Ldm840e48PmOAymA4v5RACpNjVe+
-enHo8jssizuSB2uAE9ginLUzjLoHY5QzjLA+TO9DebqVwZwr0e5ReLXqI17jX9c5
-mauv99C1o9oFcgwwYSBkDzBZw6vHEaT5qdNudynmPrJXGaJl6SsafygWis0BBQdG
-mefUDT0QZF/TAEh19VfDFp/UkgXgm1EjmITL50Kr+bGluzX/uPaqc0BlWwGioix5
-H6In/8h53bTj0gHnML89daU6dkY0p5TOCJfGuuO+28KDG5TTNatxVJiZFtnxBlnA
-osUH8Kcv3cEaXkCSGYutq2QF0o2QNlHoSy/uVvHV8y6fed1mdwQ=
-=3y29
+iQIzBAEBCgAdFiEE2nxgMa79RwzFgWUyYQvbW89uxwcFAmqQUVYACgkQYQvbW89u
+xwf18hAAnKUJBONrTfzNEJ/hWYn93uhqlk9CkALLlVljlz84YL92/xnfTOWGAZVj
+a2EglKMLfXkwvsS0HluIHYU3iYq0QniQYgBffGPXEp+klhSo/WIXP5VcphUzENJN
+XL2ftL7X/2E94nBL+/eLpnwN31PtLbVm2mOJWfPmRbVi3kJdWDhCVPU9ireGHsm/
+yCOeQBhq6RngD5MjBA4/V40iqs4MJ2oFan3hFEr5R/WS7am37fOlNkBWuRL6gTBd
+ZwnOJnUyREarVhLjpgLzRMpQuiVoT+KJQ4m5d+B41n1SltqWjawODGYV2g3w/5qy
+b1obut+fF52jbpM/YapkbHdXjXFWZ/AFms8rPCi3zLQCpVK10rN2NX5s+vXeGxcI
+F1N6nwM4I/kov86JadOOQMkSOAhVFC3LcXHJPP+PxXgkTATLkGnPeq99StjJ742d
+VOmqz2+V7fMdUgqbs4u2AXeoILfa2KU3rHr33bWcZs1ns0IuBJV+DHDQuZYw9SZH
+L6VYUmLdiGTfPn8/8zrr2fj2D12HMCuUIzcWXHo6dmphyu+FYiqsNPvY66tBEM16
+1vfb51RV9vFsdq89GCQ1291P2wcG8H6wVqdTegPGUqwP3PYLeNNdZvq8MJ4fvBlR
+yeIJD0Uk2CRDJDoR29bNwbQCXzP5Bl7qo/tOrTGbMe1j79UJa2Q=
+=YNQW
 -----END PGP SIGNATURE-----

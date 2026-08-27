@@ -1,9 +1,9 @@
 {
   "code": "composer-stable",
-  "version": "2.2.29-1",
+  "version": "2.2.30-1",
   "description": "Dependency Management for PHP",
   "version_regexp": "2.2.*",
-  "upstream_version": "2.2.29",
-  "download_url": "https://github.com/composer/composer/releases/download/2.2.29/composer.phar",
-  "download_sha256": "f38623ebdeeab5905b24b048fd32804150e598436cc43db9fc12362894c1279d"
+  "upstream_version": "2.2.30",
+  "download_url": "https://github.com/composer/composer/releases/download/2.2.30/composer.phar",
+  "download_sha256": "8c2b4478b64f8f7cdf1574838fdb0033b29049ca821dad452db7a3dcfcdbffc2"
 }

@@ -1,5 +1,5 @@
 Package: composer
-Version: 2.2.29-1
+Version: 2.2.30-1
 License: MIT
 Vendor: https://getcomposer.org/
 Architecture: amd64
@@ -9,10 +9,10 @@ Depends: curl
 Homepage: https://getcomposer.org/
 Priority: optional
 Section: devel
-Filename: pool/main/c/composer/composer_2.2.29-1_amd64.deb
-Size: 1778
-SHA256: 35ab903033e782e90d172583280a8a14b960df28e055d018ce4c37035c21eff2
-SHA1: 7f6eda2009e59b2196a60ae8deb60620da5f50f9
-MD5sum: ba1aa22e15fdbd704eb429d7a30e40a3
+Filename: pool/main/c/composer/composer_2.2.30-1_amd64.deb
+Size: 1712
+SHA256: 4c3c149cd21bc3f83401a9d1020c0dd863d529986f203ed282db413cf3fbe20c
+SHA1: 4655b916a6fa646231f1f4ba77e08d5e6489b016
+MD5sum: a0908f6cf3922214210e81446d8a59ad
 Description: Dependency Management for PHP
 
