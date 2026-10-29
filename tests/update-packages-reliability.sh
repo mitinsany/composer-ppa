@@ -6,7 +6,8 @@ script='scripts/update-packages.sh'
 
 rg -q '^set -euo pipefail$' "${script}"
 rg -q '^DEBIAN_REVISION="[0-9]+"$' "${script}"
-rg -q -- '--retry 3 --retry-all-errors --connect-timeout 15' "${script}"
+rg -q -- '--retry 3 --connect-timeout 15' "${script}"
+! rg -q -- '--retry-all-errors' "${script}"
 rg -q 'sha256sum' "${script}"
 rg -q 'assets\[\].*name.*composer\.phar' "${script}"
 

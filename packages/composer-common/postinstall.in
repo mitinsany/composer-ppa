@@ -15,7 +15,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
-curl -fL --retry 3 --retry-all-errors --connect-timeout 15 "${COMPOSER_DOWNLOAD_URL}" -o "${staged_binary}"
+curl -fL --retry 3 --connect-timeout 15 "${COMPOSER_DOWNLOAD_URL}" -o "${staged_binary}"
 printf '%s  %s\n' "${COMPOSER_DOWNLOAD_SHA256}" "${staged_binary}" | sha256sum --check --status
 chown root:root "${staged_binary}"
 chmod 0755 "${staged_binary}"

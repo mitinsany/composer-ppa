@@ -5,7 +5,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SCRIPT_DIR="${ROOT_DIR}/scripts"
 CHANGELOGS_DIR="${ROOT_DIR}/changelogs/main/c/composer"
-DEBIAN_REVISION="1"
+DEBIAN_REVISION="2"
 source "${SCRIPT_DIR}/github-api.sh"
 
 update_package_template() {
@@ -94,7 +94,7 @@ download_composer_phar() {
     local artifact
     artifact="$(mktemp)"
 
-    if ! curl -fL --retry 3 --retry-all-errors --connect-timeout 15 "${download_url}" -o "${artifact}"; then
+    if ! curl -fL --retry 3 --connect-timeout 15 "${download_url}" -o "${artifact}"; then
         rm -f "${artifact}"
         return 1
     fi

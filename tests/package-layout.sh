@@ -22,7 +22,8 @@ for channel in latest stable v1; do
 done
 
 rg -q 'sha256sum --check --status' "${postinstall_template}"
-rg -q -- '--retry 3 --retry-all-errors --connect-timeout 15' "${postinstall_template}"
+rg -q -- '--retry 3 --connect-timeout 15' "${postinstall_template}"
+! rg -q -- '--retry-all-errors' "${postinstall_template}"
 rg -q 'mktemp "\$\{install_dir\}/.composer-install' "${postinstall_template}"
 rg -q 'mv "\$\{staged_binary\}" "\$\{target_binary\}"' "${postinstall_template}"
 
