@@ -1,5 +1,10 @@
 A PPA (unofficial) repository for Composer (Dependency Management for PHP. See https://getcomposer.org/). Contains only loader for binary file, without dependencies.
 
+[![Build & Publish](https://github.com/mitinsany/composer-ppa/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/mitinsany/composer-ppa/actions/workflows/build.yml)
+[![Latest package](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmitinsany%2Fcomposer-ppa%2Fmain%2Fpackages%2Flatest%2Fcomposer%2Fpackage.json&query=%24.version&label=latest)](https://github.com/mitinsany/composer-ppa/tree/main/packages/latest/composer)
+[![Stable package](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmitinsany%2Fcomposer-ppa%2Fmain%2Fpackages%2Fstable%2Fcomposer%2Fpackage.json&query=%24.version&label=stable)](https://github.com/mitinsany/composer-ppa/tree/main/packages/stable/composer)
+[![V1 package](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmitinsany%2Fcomposer-ppa%2Fmain%2Fpackages%2Fv1%2Fcomposer%2Fpackage.json&query=%24.version&label=v1)](https://github.com/mitinsany/composer-ppa/tree/main/packages/v1/composer)
+
 # Usage
 
 ## Install via deb822 (.sources)
