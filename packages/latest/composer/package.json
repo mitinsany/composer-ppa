@@ -1,9 +1,9 @@
 {
   "code": "composer-latest",
-  "version": "2.10.3-1",
+  "version": "2.11.0-1",
   "description": "Dependency Management for PHP",
   "version_regexp": "2.*.*",
-  "upstream_version": "2.10.3",
-  "download_url": "https://github.com/composer/composer/releases/download/2.10.3/composer.phar",
-  "download_sha256": "7a2d379d5b8ffdaa028580ef26494c36d2feef4b178d3dd1473a4dbc5e17c8d6"
+  "upstream_version": "2.11.0",
+  "download_url": "https://github.com/composer/composer/releases/download/2.11.0/composer.phar",
+  "download_sha256": "9674f12a2a181100d889ebfd0b4510805b3e94cea57869b14b383753d602599b"
 }
