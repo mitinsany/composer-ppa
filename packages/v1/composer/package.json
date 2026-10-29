@@ -1,6 +1,6 @@
 {
   "code": "composer-v1",
-  "version": "1.10.28-1",
+  "version": "1.10.28-2",
   "description": "Dependency Management for PHP",
   "version_regexp": "1.*.*",
   "upstream_version": "1.10.28",
